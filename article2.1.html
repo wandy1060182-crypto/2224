@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>緊閉的軀殼 文蛤的適應力｜浪下真相</title>
+
+    <style>
+        /* ===== 基本設定 ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f5f8f8;
+            color: #333;
+        }
+
+        /* ===== 網站下載字體 ===== */
+
+        @font-face {
+            font-family: "我的網站字體";
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype");
+        }
+
+        /* ===== 頂部導覽列 ===== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ===== Logo ===== */
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== 漢堡按鈕 ===== */
+
+        .menu-btn {
+            position: absolute;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: #1d5963;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ===== 文章主要區域 ===== */
+
+        .article-page {
+            width: 100%;
+            padding: 70px 20px 100px;
+        }
+
+        .article-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 60px 75px 80px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 文章標題 ===== */
+
+        .article-title {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 40px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        /* ===== 作者 ===== */
+
+        .article-author {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        /* ===== 文章圖片 ===== */
+
+        .article-image {
+            width: 100%;
+            margin: 0 auto 15px;
+            text-align: center;
+        }
+
+        .article-image img {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== 圖片說明 ===== */
+
+        .image-caption {
+            color: #777;
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ===== 文章內容 ===== */
+
+        .article-content {
+            color: #333;
+            font-size: 18px;
+            line-height: 2;
+            letter-spacing: 0.4px;
+        }
+
+        .article-content p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        /* ===== 文章小標題 ===== */
+
+        .article-heading {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 28px;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            margin-top: 48px;
+            margin-bottom: 22px;
+            padding-left: 16px;
+            border-left: 5px solid #1d5963;
+        }
+
+        /* ===== 文章最後一段 ===== */
+
+        .article-ending {
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== 側邊選單 ===== */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background-color: #ffffff;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        /* ===== 選單標題 ===== */
+
+        .menu-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .menu-header h2 {
+            font-size: 20px;
+            color: #1d5963;
+        }
+
+        /* ===== 關閉按鈕 ===== */
+
+        .close-btn {
+            font-size: 30px;
+            color: #555;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== 選單項目 ===== */
+
+        .menu-list {
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        .menu-list li {
+            width: 100%;
+        }
+
+        .menu-list a,
+        .submenu-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 25px;
+            color: #333;
+            text-decoration: none;
+            font-size: 17px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .menu-list a:hover,
+        .submenu-btn:hover {
+            background-color: #edf5f5;
+            color: #1d5963;
+        }
+
+        /* ===== 專題文章下拉選單 ===== */
+
+        .submenu {
+            list-style: none;
+            background-color: #f7fafa;
+            display: none;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu li a {
+            padding: 13px 25px 13px 45px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .submenu li a:hover {
+            background-color: #e8f1f1;
+            color: #1d5963;
+        }
+
+        /* ===== 下拉箭頭 ===== */
+
+        .arrow {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .submenu-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* ===== 遮罩 ===== */
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== 手機版 ===== */
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .menu-btn {
+                right: 18px;
+            }
+
+            .article-page {
+                padding: 35px 12px 60px;
+            }
+
+            .article-container {
+                padding: 35px 22px 50px;
+            }
+
+            .article-title {
+                font-size: 30px;
+                line-height: 1.5;
+            }
+
+            .article-author {
+                font-size: 14px;
+                margin-bottom: 28px;
+            }
+
+            .article-content {
+                font-size: 16px;
+                line-height: 1.95;
+            }
+
+            .article-heading {
+                font-size: 23px;
+                margin-top: 40px;
+                margin-bottom: 18px;
+                padding-left: 12px;
+            }
+
+            .image-caption {
+                font-size: 13px;
+                margin-bottom: 30px;
+            }
+
+            .side-menu {
+                width: 280px;
+            }
+        }
+
+        /* ===== 更小螢幕 ===== */
+
+        @media (max-width: 480px) {
+            .article-container {
+                padding: 30px 18px 45px;
+            }
+
+            .article-title {
+                font-size: 27px;
+            }
+
+            .article-content {
+                font-size: 15.5px;
+            }
+
+            .article-heading {
+                font-size: 21px;
+            }
+        }
+    /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+
+    </style> 
+</head> 
+ 
+ 
+<body> 
+
+     <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='article3.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+
+    <!-- ===== 頂部導覽列 ===== -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <div class="img">
+                <img src="圖片logo.png" alt="浪下真相">
+            </div>
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="開啟網站選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+    <!-- ===== 文章內容 ===== -->
+
+    <main class="article-page">
+
+        <article class="article-container">
+
+            <!-- ===== 文章標題 ===== -->
+
+            <h1 class="article-title">
+                緊閉的軀殼 文蛤的適應力
+            </h1>
+
+            <!-- ===== 作者 ===== -->
+
+            <div class="article-author">
+                文／吳尚恩
+            </div>
+
+            <!-- ===== 文章主圖片 ===== -->
+
+            <figure class="article-image">
+                <img src="蛤蠣.JPG">
+            </figure>
+
+            <div class="image-caption">
+                ▲文蛤(攝影吳尚恩)
+            </div>
+
+            <!-- ===== 文章正文 ===== -->
+
+            <div class="article-content">
+
+                <p>
+                    據農業部漁業署統計，2025年全國文蛤養殖面積約7千公頃，產量4.8萬公噸，占台灣養殖漁業總產值共15.7%，文蛤作為台灣重要的養殖物種，不僅是國人餐桌上的常見食材，也是沿海養殖漁業重要的經濟來源。然而，這項產業背後，卻也面臨氣候變遷、養殖環境變化等多重挑戰。
+                </p>
+
+                <p>
+                    文蛤屬於廣鹽、廣溫的物種，可生長於半鹹淡水的環境中，並對溫度變化的接受度高，但看似適應力極強的它，卻有著矜貴的一面。
+                </p>
+
+                <p>
+                    文蛤屬於滲透壓順應型生物，簡單來說，就是會隨著外界環境調整體內的狀態，讓自己慢慢適應周遭的水質。這種方式不需要消耗太多能量，但也有一個小小的代價，就是需要時間。
+                </p>
+
+                <p>
+                    據研究顯示，文蛤需要1天以上的時間，才能讓體內的血液滲透壓穩定。所以當外界產生劇烈且快速的變化時，文蛤通常難以快速適應。
+                </p>
+
+                <p>
+                    但好在文蛤有一項技能——「關殼」。
+                </p>
+
+                <p>
+                    當環境變得不適合生存時，文蛤大多會像我們看到的那樣，緊閉著軀殼，而這便讓文蛤有了另一項能力，便是可以長時間忍受無氧環境。有研究顯示在溶氧量低於0.25 ppm的環境下，文蛤經過了2天時間才開始陸續死亡，但這並非是毫無極限，文蛤能忍受無氧環境多久，是受到水溫的影響；當溫度越高，牠能撐過無氧環境的時間也會跟著縮短。
+                </p>
+
+                <!-- ===== 第二個小標題 ===== -->
+
+                <h2 class="article-heading">
+                    水質牽動文蛤的一生
+                </h2>
+
+                <p>
+                    而除了水溫影響溶氧量，導致文蛤缺氧死亡外，鹽度與酸鹼值也同樣影響著牠成長。極端氣候導致的豪雨會讓池水的酸鹼值驟降，讓本來穩定的水域產生巨大變化；而若池中累積過多的有機質，水質同樣可能受到影響，有機質的大量繁衍，會使得酸鹼值逐漸偏離文蛤舒服的生長範圍，直至死亡。
+                </p>
+
+                <p>
+                    對此，只有改善水質才能治本。過去的養殖業以看天做事為主，但如今隨著養殖技術不斷發展，養殖戶也開始嘗試利用不同方法，近年「光合菌」成為產業流行，它的作用在於幫助文蛤及各類魚種清毒素，並搭配相關技術，使水池環境更為穩定。
+                </p>
+
+                <p>
+                    桌上習以為常的身影，看似總是安靜地在成長，但其實一點也沒有想像中安穩。文蛤能適應的範圍雖然不小，卻也經不起環境在短時間內反覆變化。
+                </p>
+
+                <p class="article-ending">
+                    所以，別看這些小小的文蛤總是安靜地待在泥裡，牠們其實比想像中還要矜貴。
+                </p>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <!-- ===== 遮罩 ===== -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== 側邊選單 ===== -->
+
+    <aside class="side-menu" id="sideMenu">
+
+        <div class="menu-header">
+            <h2>網站選單</h2>
+            <button class="close-btn" id="closeBtn" aria-label="關閉網站選單">×</button>
+        </div>
+
+        <ul class="menu-list">
+
+            <li>
+                <a href="index.html">
+                    <span>首頁</span>
+                </a>
+            </li>
+
+            <li>
+                <button class="submenu-btn" id="articleBtn">
+                    <span>專題文章</span>
+                    <span class="arrow">▼</span>
+                </button>
+
+                <ul class="submenu" id="articleSubmenu">
+
+                    <li>
+                        <a href="article1.html">漁業困境概括</a>
+                    </li>
+
+                    <li>
+                        <a href="article2.html">烏魚</a>
+                    </li>
+
+                    <li>
+                        <a href="article3.html">貝類</a>
+                    </li>
+
+                    <li>
+                        <a href="article4.html">白蝦</a>
+                    </li>
+
+                    <li>
+                        <a href="article5.html">香魚</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#新聞報導">
+                    <span>新聞報導</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ===== JavaScript ===== -->
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+        const articleBtn = document.getElementById("articleBtn");
+        const articleSubmenu = document.getElementById("articleSubmenu");
+
+        /* ===== 開啟側邊選單 ===== */
+
+        menuBtn.addEventListener("click", function () {
+            sideMenu.classList.add("active");
+            overlay.classList.add("active");
+        });
+
+        /* ===== 關閉側邊選單 ===== */
+
+        closeBtn.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 點擊遮罩關閉 ===== */
+
+        overlay.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 專題文章展開／收起 ===== */
+
+        articleBtn.addEventListener("click", function () {
+            articleSubmenu.classList.toggle("active");
+            articleBtn.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>

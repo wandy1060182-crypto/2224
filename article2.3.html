@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>黑蜆｜浪下真相</title>
+
+    <style>
+        /* ===== 基本設定 ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f5f8f8;
+            color: #333;
+        }
+
+        /* ===== 網站下載字體 ===== */
+
+        @font-face {
+            font-family: "我的網站字體";
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype");
+        }
+
+        /* ===== 頂部導覽列 ===== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ===== Logo ===== */
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== 漢堡按鈕 ===== */
+
+        .menu-btn {
+            position: absolute;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: #1d5963;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ===== 文章主要區域 ===== */
+
+        .article-page {
+            width: 100%;
+            padding: 70px 20px 100px;
+        }
+
+        .article-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 60px 75px 80px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 文章標題 ===== */
+
+        .article-title {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 40px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        /* ===== 作者 ===== */
+
+        .article-author {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        /* ===== 文章圖片 ===== */
+
+        .article-image {
+            width: 100%;
+            margin: 0 auto 15px;
+            text-align: center;
+        }
+
+        .article-image img {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== 圖片說明 ===== */
+
+        .image-caption {
+            color: #777;
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ===== 文章內容 ===== */
+
+        .article-content {
+            color: #333;
+            font-size: 18px;
+            line-height: 2;
+            letter-spacing: 0.4px;
+        }
+
+        .article-content p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        /* ===== 文章小標題 ===== */
+
+        .article-heading {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 28px;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            margin-top: 48px;
+            margin-bottom: 22px;
+            padding-left: 16px;
+            border-left: 5px solid #1d5963;
+        }
+
+        /* ===== 文章最後一段 ===== */
+
+        .article-ending {
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== 側邊選單 ===== */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background-color: #ffffff;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        /* ===== 選單標題 ===== */
+
+        .menu-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .menu-header h2 {
+            font-size: 20px;
+            color: #1d5963;
+        }
+
+        /* ===== 關閉按鈕 ===== */
+
+        .close-btn {
+            font-size: 30px;
+            color: #555;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== 選單項目 ===== */
+
+        .menu-list {
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        .menu-list li {
+            width: 100%;
+        }
+
+        .menu-list a,
+        .submenu-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 25px;
+            color: #333;
+            text-decoration: none;
+            font-size: 17px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .menu-list a:hover,
+        .submenu-btn:hover {
+            background-color: #edf5f5;
+            color: #1d5963;
+        }
+
+        /* ===== 專題文章下拉選單 ===== */
+
+        .submenu {
+            list-style: none;
+            background-color: #f7fafa;
+            display: none;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu li a {
+            padding: 13px 25px 13px 45px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .submenu li a:hover {
+            background-color: #e8f1f1;
+            color: #1d5963;
+        }
+
+        /* ===== 下拉箭頭 ===== */
+
+        .arrow {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .submenu-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* ===== 遮罩 ===== */
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== 手機版 ===== */
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .menu-btn {
+                right: 18px;
+            }
+
+            .article-page {
+                padding: 35px 12px 60px;
+            }
+
+            .article-container {
+                padding: 35px 22px 50px;
+            }
+
+            .article-title {
+                font-size: 30px;
+                line-height: 1.5;
+            }
+
+            .article-author {
+                font-size: 14px;
+                margin-bottom: 28px;
+            }
+
+            .article-content {
+                font-size: 16px;
+                line-height: 1.95;
+            }
+
+            .article-heading {
+                font-size: 23px;
+                margin-top: 40px;
+                margin-bottom: 18px;
+                padding-left: 12px;
+            }
+
+            .image-caption {
+                font-size: 13px;
+                margin-bottom: 30px;
+            }
+
+            .side-menu {
+                width: 280px;
+            }
+        }
+
+        /* ===== 更小螢幕 ===== */
+
+        @media (max-width: 480px) {
+            .article-container {
+                padding: 30px 18px 45px;
+            }
+
+            .article-title {
+                font-size: 27px;
+            }
+
+            .article-content {
+                font-size: 15.5px;
+            }
+
+            .article-heading {
+                font-size: 21px;
+            }
+        }
+   /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+
+    </style> 
+</head> 
+ 
+ 
+<body> 
+
+     <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='article3.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+
+    <!-- ===== 頂部導覽列 ===== -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <div class="img">
+                <img src="圖片logo.png" alt="浪下真相">
+            </div>
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="開啟網站選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+    <!-- ===== 文章內容 ===== -->
+
+    <main class="article-page">
+
+        <article class="article-container">
+
+            <!-- ===== 文章標題 ===== -->
+
+            <h1 class="article-title">
+                「水中黑鑽石」如何落腳台灣 與台灣原生蜆的差異
+            </h1>
+
+            <!-- ===== 作者 ===== -->
+
+            <div class="article-author">
+                文／鄭文書
+            </div>
+
+            <!-- ===== 文章主圖片 ===== -->
+
+            <figure class="article-image">
+                <img src="黑蜆照.jpg" >
+            </figure>
+
+            <div class="image-caption">
+                ▲大和黑蜆成長的各種型態(攝影/陳姵甄）
+            </div>
+
+            <!-- ===== 文章正文 ===== -->
+
+            <div class="article-content">
+
+                <p>
+                    大和黑蜆又被稱為「水中黑鑽石」，是日本重要的食用蜆類之一，主要產於日本島根縣宍道湖等地，其他日本地區及朝鮮半島也有分布。牠的外殼呈深黑色或黑褐色，與一般常見的蜆類有所不同。然而，大和黑蜆受到關注的原因不只有外觀，牠對水域環境的適應需求，以及從野生資源利用到人工養殖的發展，也讓這種蜆類具有值得探討的生態與產業價值。
+                </p>
+
+                <p>
+                    台灣目前也有大和黑蜆養殖產業，主要產區集中於彰化縣芳苑鄉。相較於一般淡水蜆類，大和黑蜆的養殖需要考量水體鹽度、水質與藻類等條件。這些環境因素如何影響黑蜆的生長？牠與台灣常見的黃金蜆又有哪些差異？
+                </p>
+
+                <!-- ===== 第一個小標題 ===== -->
+
+                <h2 class="article-heading">
+                    大和黑蜆和黃金蜆差異
+                </h2>
+
+                <p>
+                    大和黑蜆的外殼較厚，表面略顯粗糙，顏色多為深黑色或黑褐色，因此有了「水中黑鑽石」的稱號。相較之下，台灣常見的黃金蜆外殼多呈黃褐色，殼面可見環狀的生長輪，也是日常蜆湯等料理常使用的蜆類。
+                </p>
+
+                <p>
+                    不過，兩者真正值得比較的地方，不只是外觀，而是棲息環境的差異。大和黑蜆主要生活於河川與湖泊交會、淡水與海水混合的半鹹水域；黃金蜆則主要生活於淡水環境。由於水體鹽度會受到降雨、河川流量及海水混入等因素影響，半鹹水環境的條件可能隨時間變動，也使大和黑蜆的養殖需要特別留意水質變化。
+                </p>
+
+                <!-- ===== 第二個小標題 ===== -->
+
+                <h2 class="article-heading">
+                    水質和藻類的要求嚴苛
+                </h2>
+
+                <p>
+                    目前台灣大和黑蜆養殖面積約有七十公頃，主要集中於彰化縣芳苑鄉。養殖過程相當重視天氣、水質、鹽度及藻類數量等環境條件，其中鹽度更會直接影響黑蜆的生長狀況。
+                </p>
+
+                <p>
+                    以彰化產區而言，養殖水域的鹽度約落在1至1.5度左右，而越往台灣南部，水域鹽度通常也會逐漸升高。除了鹽度之外，水質的酸鹼值也是養殖管理的重要指標，適合的水質環境約維持在中性，也就是pH值接近7。
+                </p>
+
+                <p>
+                    在養殖過程中，部分養殖戶也會採取混養方式，在黑蜆池中加入其他魚類。魚類可以攝食池中的部分藻類，避免藻類大量繁殖而影響陽光進入水體，進而維持較適合黑蜆生長的水域環境。透過不同物種之間的搭配，也能降低養殖池的管理負擔。
+                </p>
+
+                <!-- ===== 第三個小標題 ===== -->
+
+                <h2 class="article-heading">
+                    黑蜆受大眾喜愛 營養價值豐富
+                </h2>
+
+                <p>
+                    日本島根縣官方資料指出，宍道湖的黑蜆捕獲量在日本名列前茅，是當地相當重要的水產資源。黑蜆不僅是日本常見的食材，也因具有豐富的營養價值，像是含有人體必需的胺基酸，富含的肝醣能夠提供能量和體力，也因為具備零脂肪和零膽固醇，長期受到日本消費者喜愛。
+                </p>
+
+                <p>
+                    目前台灣大和黑蜆的年產量約為一千兩百萬公斤，其中大部分產品銷往日本市場，國內市場的銷售量相對較少。對台灣養殖業者而言，日本市場因此成為大和黑蜆重要的銷售市場之一。
+                </p>
+
+                <p class="article-ending">
+                    大和黑蜆受到日本市場重視，除了具有特殊的風味與口感，也含有蛋白質、礦物質及胺基酸等營養成分，其中胺基酸中的「鳥胺酸」能幫助代謝、提神，且具護肝作用。部分業者也將其營養特色延伸至養生及美容等產品訴求，讓黑蜆不再只是傳統水產食材，而逐漸發展出更多元的商品形式。
+                </p>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <!-- ===== 遮罩 ===== -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== 側邊選單 ===== -->
+
+    <aside class="side-menu" id="sideMenu">
+
+        <div class="menu-header">
+            <h2>網站選單</h2>
+            <button class="close-btn" id="closeBtn" aria-label="關閉網站選單">×</button>
+        </div>
+
+        <ul class="menu-list">
+
+            <li>
+                <a href="index.html">
+                    <span>首頁</span>
+                </a>
+            </li>
+
+            <li>
+                <button class="submenu-btn" id="articleBtn">
+                    <span>專題文章</span>
+                    <span class="arrow">▼</span>
+                </button>
+
+                <ul class="submenu" id="articleSubmenu">
+
+                    <li>
+                        <a href="article1.html">漁業困境概括</a>
+                    </li>
+
+                    <li>
+                        <a href="article2.html">烏魚</a>
+                    </li>
+
+                    <li>
+                        <a href="article3.html">貝類</a>
+                    </li>
+
+                    <li>
+                        <a href="article4.html">白蝦</a>
+                    </li>
+
+                    <li>
+                        <a href="article5.html">香魚</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#新聞報導">
+                    <span>新聞報導</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ===== JavaScript ===== -->
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+        const articleBtn = document.getElementById("articleBtn");
+        const articleSubmenu = document.getElementById("articleSubmenu");
+
+        /* ===== 開啟側邊選單 ===== */
+
+        menuBtn.addEventListener("click", function () {
+            sideMenu.classList.add("active");
+            overlay.classList.add("active");
+        });
+
+        /* ===== 關閉側邊選單 ===== */
+
+        closeBtn.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 點擊遮罩關閉 ===== */
+
+        overlay.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 專題文章展開／收起 ===== */
+
+        articleBtn.addEventListener("click", function () {
+            articleSubmenu.classList.toggle("active");
+            articleBtn.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>

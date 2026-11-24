@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漁業困境概括｜浪下真相</title>
+
+    <style>
+
+        /* ===== 基本設定 ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f5f8f8;
+            color: #333;
+        }
+
+        @font-face {
+            font-family: "我的網站字體";
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype");
+        }
+
+
+ 
+
+        /* ===== 頂部導覽列 ===== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1000;
+        }
+
+
+        /* ===== 網站標題置中 ===== */
+
+ 
+       .img {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+
+
+        /* ===== 漢堡按鈕固定在右側 ===== */
+
+        .menu-btn {
+            position: absolute;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: #1d5963;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+
+        /* ==================================================
+           ===== 漁業困境概括文章頁面 =====
+           ================================================== */
+
+        .article-page {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 30px 80px;
+        }
+
+
+        /* ===== 文章標題 ===== */
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+
+        .article-category {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #1d5963;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+
+        .article-header h1 {
+            font-size: 42px;
+            line-height: 1.4;
+            color: #003060;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+
+        .article-header p {
+            font-size: 15px;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* ===== 文章內容 ===== */
+
+        .article-content {
+            background-color: #ffffff;
+            padding: 45px 55px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+
+        /* ===== 文章小標 ===== */
+
+        .article-content h2 {
+            font-size: 27px;
+            line-height: 1.5;
+            color: #003060;
+            margin-top: 35px;
+            margin-bottom: 18px;
+        }
+
+
+        .article-content h2:first-child {
+            margin-top: 0;
+        }
+
+
+        /* ===== 文章段落 ===== */
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 22px;
+            text-align: justify;
+        }
+
+
+        /* ===== 重點文字 ===== */
+
+        .article-content strong {
+            color: #1d5963;
+        }
+
+
+        /* ===== 分隔線 ===== */
+
+        .article-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #e5eeee;
+            margin: 40px 0;
+        }
+
+
+        /* ==================================================
+           ===== 漢堡按鈕 =====
+           ================================================== */
+
+        .menu-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+
+        /* ==================================================
+           ===== 側邊選單 =====
+           ================================================== */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background-color: #ffffff;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+
+        /* 開啟選單 */
+
+        .side-menu.active {
+            right: 0;
+        }
+
+
+        /* ===== 選單標題 ===== */
+
+        .menu-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        .menu-header h2 {
+            font-size: 20px;
+            color: #1d5963;
+        }
+
+
+        /* ===== 關閉按鈕 ===== */
+
+        .close-btn {
+            font-size: 30px;
+            color: #555;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           ===== 選單項目 =====
+           ================================================== */
+
+        .menu-list {
+            list-style: none;
+            padding: 15px 0;
+        }
+
+
+        .menu-list li {
+            width: 100%;
+        }
+
+
+        .menu-list a,
+        .submenu-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 25px;
+            color: #333;
+            text-decoration: none;
+            font-size: 17px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+
+
+        .menu-list a:hover,
+        .submenu-btn:hover {
+            background-color: #edf5f5;
+            color: #1d5963;
+        }
+
+
+        /* ===== 專題文章下拉選單 ===== */
+
+        .submenu {
+            list-style: none;
+            background-color: #f7fafa;
+            display: none;
+        }
+
+
+        .submenu.active {
+            display: block;
+        }
+
+
+        .submenu li a {
+            padding: 13px 25px 13px 45px;
+            font-size: 15px;
+            color: #555;
+        }
+
+
+        .submenu li a:hover {
+            background-color: #e8f1f1;
+            color: #1d5963;
+        }
+
+
+        /* ===== 下拉箭頭 ===== */
+
+        .arrow {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+
+        .submenu-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* ==================================================
+           ===== 遮罩 =====
+           ================================================== */
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            display: none;
+            z-index: 1500;
+        }
+
+
+        .overlay.active {
+            display: block;
+        }
+
+
+        /* ==================================================
+           ===== 手機版 =====
+           ================================================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+
+            .logo {
+                font-size: 20px;
+            }
+
+
+            .side-menu {
+                width: 280px;
+            }
+
+
+            /* ===== 文章區域 ===== */
+
+            .article-page {
+                padding: 40px 18px 60px;
+            }
+
+
+            /* ===== 文章標題 ===== */
+
+            .article-header {
+                margin-bottom: 30px;
+            }
+
+
+            .article-category {
+                font-size: 13px;
+            }
+
+
+            .article-header h1 {
+                font-size: 30px;
+            }
+
+
+            .article-header p {
+                font-size: 14px;
+            }
+
+            /* ===== 文章內容 ===== */
+
+            .article-content {
+                padding: 30px 22px;
+                border-radius: 8px;
+            }
+
+
+            .article-content h2 {
+                font-size: 23px;
+                margin-top: 30px;
+            }
+
+
+            .article-content p {
+                font-size: 16px;
+                line-height: 1.9;
+                text-align: left;
+            }
+
+
+    }
+            /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='index.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+
+
+    <!-- ==================================================
+         ===== 頂部導覽列 =====
+         ================================================== -->
+
+    <nav class="navbar">
+
+    <a href="index.html" class="logo">
+        <div class="img"> 
+            <img src="圖片logo.png" alt="浪下真相"> 
+        </div>
+    </a> 
+
+        <!-- 漢堡選單按鈕 -->
+
+        <button class="menu-btn" id="menuBtn">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         ===== 漁業困境概括文章 =====
+         ================================================== -->
+
+    <main class="article-page">
+
+
+        <!-- ===== 文章標題 ===== -->
+
+        <header class="article-header">
+
+            <h1>
+                漁業困境概括
+            </h1>
+
+            <p>
+                面對氣候、產業與市場變化所帶來的挑戰，養殖漁業業者該怎麼應對？
+            </p>
+
+        </header>
+
+
+        <!-- ==================================================
+             ===== 文章內容 =====
+             ================================================== -->
+
+        <article class="article-content">
+
+
+            <!-- ===== 第一段／文章開頭 ===== -->
+
+            <h2>
+                台灣漁業正在面對什麼？
+            </h2>
+
+            <p>
+                台灣四面環海，養殖漁業不僅是沿海地區重要的產業之一，也與地方經濟及民間的日常生活息息相關。根據漁業署統計，養殖漁業產值約占台灣漁業總產值的四成，顯示其在漁業發展中的重要地位。
+                
+            </p>
+
+            <p>
+                然而，隨著環境變遷與市場競爭日益加劇，養殖業者面臨的挑戰已不僅是如何維持生產，更涉及養殖環境、經營成本與市場收益等多重考驗。
+            </p>
+
+            <!-- ===== 第二段 ===== -->
+
+            <h2>
+                氣候變化帶來的影響
+            </h2>
+
+            <p>
+                在養殖漁業面臨的多重挑戰中，氣候變遷也是影響產業發展的重要因素。隨著氣溫升高與極端天氣事件發生，養殖環境的不穩定性隨之增加，不僅可能影響水產品的生長與收成，也可能增加養殖管理的難度與經營風險。
+            </p>
+
+            <p>
+                當自然環境的變化與原有的生產成本、市場競爭等問題交織，養殖業者所面臨的壓力也隨之加重，如何因應氣候帶來的衝擊，是台灣養殖漁業眼下須持續關注的重要課題。
+            </p>
+
+            <!-- ===== 第三段 ===== -->
+
+            <h2>
+                產業與市場的變化
+            </h2>
+
+            <p>
+                除了環境因素，產業結構與市場變化也是影響台灣養殖漁業發展的重要因素。隨著消費需求、供需關係及國際貿易環境的變動，水產品的價格與銷售情況也可能隨之波動，使養殖業者除了面對生產上的風險，還必須承擔市場競爭帶來的壓力。
+            </p>
+
+            <P>
+                對養殖業者而言，即使順利完成生產，也不代表能獲得理想的收益，從產地價格到市場銷售，每個環節的變化都可能影響一年的經營成果
+            </P>
+
+
+            <div class="article-divider"></div>
+
+
+            <!-- ===== 結尾 ===== -->
+
+            <h2>
+                記錄並見證轉型力量
+            </h2>
+
+            <p>
+                「浪下真相」此網站建立的目的，便是想向讀者呈現時下台灣養殖漁業的發展，透過聚焦於「烏魚、貝類、白蝦及香魚養殖」等篇章，展現養殖業者的轉型力量，看著他們是如何一步步面對外界所帶來的挑戰。
+            </p>
+
+
+        </article>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         ===== 遮罩 =====
+         ================================================== -->
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+    <!-- ==================================================
+         ===== 側邊選單 =====
+         ================================================== -->
+
+    <aside class="side-menu" id="sideMenu">
+
+
+        <!-- ===== 選單標題 ===== -->
+
+        <div class="menu-header">
+
+            <h2>網站選單</h2>
+
+            <button class="close-btn" id="closeBtn">
+                ×
+            </button>
+
+        </div>
+
+
+
+        <!-- ===== 選單內容 ===== -->
+
+        <ul class="menu-list">
+
+
+            <!-- 首頁 -->
+
+            <li>
+
+                <a href="index.html">
+
+                    <span>首頁</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- 專題文章 -->
+
+            <li>
+
+                <button class="submenu-btn" id="articleBtn">
+
+                    <span>專題文章</span>
+
+                    <span class="arrow">▼</span>
+
+                </button>
+
+
+
+                <!-- 專題文章子選單 -->
+
+                <ul class="submenu" id="articleSubmenu">
+
+
+                    <li>
+
+                        <a href="article1.html">
+                            漁業困境概括
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article2.html">
+                            烏魚
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article3.html">
+                            貝類
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article4.html">
+                            白蝦
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article5.html">
+                            香魚
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </li>
+
+
+
+            <!-- 新聞報導 -->
+
+            <li>
+
+                <a href="#新聞報導">
+
+                    <span>新聞報導</span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- ==================================================
+         ===== JavaScript =====
+         ================================================== -->
+
+    <script>
+
+
+        // 取得元素
+
+        const menuBtn = document.getElementById("menuBtn");
+
+        const closeBtn = document.getElementById("closeBtn");
+
+        const sideMenu = document.getElementById("sideMenu");
+
+        const overlay = document.getElementById("overlay");
+
+
+        const articleBtn = document.getElementById("articleBtn");
+
+        const articleSubmenu = document.getElementById("articleSubmenu");
+
+
+
+        // 開啟側邊選單
+
+        menuBtn.addEventListener("click", function () {
+
+            sideMenu.classList.add("active");
+
+            overlay.classList.add("active");
+
+        });
+
+
+
+        // 關閉側邊選單
+
+        closeBtn.addEventListener("click", function () {
+
+            sideMenu.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        });
+
+
+
+        // 點擊遮罩也可以關閉
+
+        overlay.addEventListener("click", function () {
+
+            sideMenu.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        });
+
+
+
+        // 展開／收起「專題文章」
+
+        articleBtn.addEventListener("click", function () {
+
+            articleSubmenu.classList.toggle("active");
+
+            articleBtn.classList.toggle("active");
+
+        });
+
+
+    </script>
+
+
+</body>
+</html>
