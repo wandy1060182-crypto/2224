@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>漁業的轉型 百大青農將智慧養殖帶入漁業｜浪下真相</title>
+
+    <style>
+        /* ===== 基本設定 ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f5f8f8;
+            color: #333;
+        }
+
+        /* ===== 網站下載字體 ===== */
+
+        @font-face {
+            font-family: "我的網站字體";
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype");
+        }
+
+        /* ===== 頂部導覽列 ===== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ===== Logo ===== */
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== 漢堡按鈕 ===== */
+
+        .menu-btn {
+            position: absolute;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+            background-color: #1d5963;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ===== 文章主要區域 ===== */
+
+        .article-page {
+            width: 100%;
+            padding: 70px 20px 100px;
+        }
+
+        .article-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 60px 75px 80px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 文章標題 ===== */
+
+        .article-title {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 40px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        /* ===== 作者 ===== */
+
+        .article-author {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        /* ===== 文章圖片 ===== */
+
+        .article-image {
+            width: 100%;
+            margin: 0 auto 15px;
+            text-align: center;
+        }
+
+        .article-image img {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== 圖片說明 ===== */
+
+        .image-caption {
+            color: #777;
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ===== 文章內容 ===== */
+
+        .article-content {
+            color: #333;
+            font-size: 18px;
+            line-height: 2;
+            letter-spacing: 0.4px;
+        }
+
+        .article-content p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        /* ===== 文章小標題 ===== */
+
+        .article-heading {
+            font-family: "ZenMaruGothic-Bold.ttf", sans-serif;
+            color: #1d5963;
+            font-size: 28px;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            margin-top: 48px;
+            margin-bottom: 22px;
+            padding-left: 16px;
+            border-left: 5px solid #1d5963;
+        }
+
+        /* ===== 文章最後一段 ===== */
+
+        .article-ending {
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== 側邊選單 ===== */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background-color: #ffffff;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        /* ===== 選單標題 ===== */
+
+        .menu-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .menu-header h2 {
+            font-size: 20px;
+            color: #1d5963;
+        }
+
+        /* ===== 關閉按鈕 ===== */
+
+        .close-btn {
+            font-size: 30px;
+            color: #555;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== 選單項目 ===== */
+
+        .menu-list {
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        .menu-list li {
+            width: 100%;
+        }
+
+        .menu-list a,
+        .submenu-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 25px;
+            color: #333;
+            text-decoration: none;
+            font-size: 17px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .menu-list a:hover,
+        .submenu-btn:hover {
+            background-color: #edf5f5;
+            color: #1d5963;
+        }
+
+        /* ===== 專題文章下拉選單 ===== */
+
+        .submenu {
+            list-style: none;
+            background-color: #f7fafa;
+            display: none;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu li a {
+            padding: 13px 25px 13px 45px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .submenu li a:hover {
+            background-color: #e8f1f1;
+            color: #1d5963;
+        }
+
+        /* ===== 下拉箭頭 ===== */
+
+        .arrow {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .submenu-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* ===== 遮罩 ===== */
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== 手機版 ===== */
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .menu-btn {
+                right: 18px;
+            }
+
+            .article-page {
+                padding: 35px 12px 60px;
+            }
+
+            .article-container {
+                padding: 35px 22px 50px;
+            }
+
+            .article-title {
+                font-size: 30px;
+                line-height: 1.5;
+            }
+
+            .article-author {
+                font-size: 14px;
+                margin-bottom: 28px;
+            }
+
+            .article-content {
+                font-size: 16px;
+                line-height: 1.95;
+            }
+
+            .article-heading {
+                font-size: 23px;
+                margin-top: 40px;
+                margin-bottom: 18px;
+                padding-left: 12px;
+            }
+
+            .image-caption {
+                font-size: 13px;
+                margin-bottom: 30px;
+            }
+
+            .side-menu {
+                width: 280px;
+            }
+        }
+
+        /* ===== 更小螢幕 ===== */
+
+        @media (max-width: 480px) {
+            .article-container {
+                padding: 30px 18px 45px;
+            }
+
+            .article-title {
+                font-size: 27px;
+            }
+
+            .article-content {
+                font-size: 15.5px;
+            }
+
+            .article-heading {
+                font-size: 21px;
+            }
+        }
+    /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+
+    </style> 
+</head> 
+ 
+ 
+<body> 
+
+     <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='article4.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+
+    <!-- ===== 頂部導覽列 ===== -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <div class="img">
+                <img src="圖片logo.png" alt="浪下真相">
+            </div>
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="開啟網站選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+    <!-- ===== 文章內容 ===== -->
+
+    <main class="article-page">
+
+        <article class="article-container">
+
+            <!-- ===== 文章標題 ===== -->
+
+            <h1 class="article-title">
+                漁業的轉型 智慧養殖進入漁業
+            </h1>
+
+            <!-- ===== 作者 ===== -->
+
+            <div class="article-author">
+                文／鄭文書
+            </div>
+
+            <!-- ===== 文章主圖片 ===== -->
+
+            <figure class="article-image">
+                <img src="智慧養殖機.jpg">
+            </figure>
+
+            <div class="image-caption">
+                ▲（圖說）
+            </div>
+
+            <!-- ===== 文章正文 ===== -->
+
+            <div class="article-content">
+
+                <p>
+                    嘉義的沿海地區是白蝦養殖的重要區域，當地養殖白蝦有個特色，透過智慧養殖的方式能夠監測水質，機器投餵減少人力的成本，也能確保白蝦的健康以及混養狀況，而嘉義就有一位獲得全國百大青農的漁民透過智能養殖的方式來養殖白蝦，將白蝦存活率提高，產量增加。
+                </p>
+
+                <h2 class="article-heading">
+                    從養蝦王國到智慧養殖的產業轉型之路
+                </h2>
+
+                <p>
+                    曾經擁有養蝦王國之稱的台灣，在1987年養殖蝦的產量以9.5萬噸占全球的四分之一，因為病毒威脅、環境惡化以及進口蝦的價格低廉，讓國產蝦的市場面臨危機。
+                </p>
+
+                <p>
+                    嘉義是養殖白蝦的重要養殖產區，早期主要以養草蝦為主，但因為草蝦的疾病問題，且白蝦對於白點病的抗體較草蝦強，養殖業者這才漸漸轉型改養殖白蝦為主。
+                </p>
+
+                <p>
+                    傳統養殖為了追求白蝦的生長速度與存活率，會抽取地下水與海水混合，調製成半淡海水供白蝦養殖。然而，長期大量抽取地下水，也造成嘉義部分沿海地區地層下陷問題日益嚴重。
+                </p>
+
+                <figure class="article-image">
+                    <img src="地層下陷圖.jpg">
+                </figure>
+                <div class="image-caption">
+                    ▲嘉義縣的地層下陷速率、下陷量、下陷面積分析圖（資料來源：水利署地層下陷監測資訊整合服務系統）
+                </div>
+
+                <p>
+                    1996年起，當地逐漸發展白蝦養殖產業，並結合虱目魚、草魚等魚類進行混養，以拓展養殖方式，透過混養的方式能夠讓多物種共生，養殖過程也堅持不添加藥物，監測水池的顏色及酸鹼值和溶氧量。
+                </p>
+
+                 <figure class="article-image">
+                    <img src="白蝦手機監測.jpg">
+                </figure>
+                <div class="image-caption">
+                    ▲魚塭養殖狀況可由手機進行遠端監控(攝影/陳姵甄)
+                </div>
+
+                <p>
+                2019年，嘉義縣政府推動智慧養殖設備補助計畫，補助漁民購買水質監測器、智能電箱等等，幫助嘉義縣的漁民能夠透過智慧養殖來管理魚塭。透過手機就能觀測魚塭的水質、溶氧量，遇到問題時能夠及時處理，避免判斷錯誤，反而造成更大的損失。透過智能養殖的方式不僅改善人力問題，也提升白蝦的存活率，讓養殖管理從靠經驗逐漸轉向用數據，成為白蝦產業面對環境與市場挑戰的一種轉型方式。
+                </p>
+
+                <h2 class="article-heading">
+                    青年返鄉 將傳統漁業朝現代化進步
+                </h2>
+            <!-- ===== 文章圖片 ===== -->
+
+            <figure class="article-image">
+                <img src="嘉義寶蝦陳泓碩.jpg">
+            </figure>
+
+            <div class="image-caption">
+                ▲台灣寶蝦經營人陳泓碩（攝影/陳姵甄）
+            </div>
+
+                <p>
+                    出生在嘉義縣布袋的陳泓碩，目前為嘉義縣養殖漁業發展協會的理事長，也是中華民國養殖協會的常務理事。原本從事倉儲業的他，因為工作關係和家人分隔三地，生活開銷也負荷不了，才決定一家人回到家鄉。民國98年，他回到嘉義從事養殖漁業。當時因為對於這個行業不熟悉，每個人的方式也都不同，所以遇到了許多瓶頸。後來他參加政府舉辦的活動，有任何養殖問題都可以詢問，也重新學習相關知識、把基礎打好，白蝦養殖才漸漸好轉起來。
+                </p>
+
+                <p>
+                    民國103年，他開始思考自產自銷。過去的養殖方式會使用一些動物用藥，但他認為如果要自產自銷，就應該轉型為生態養殖。於是他向專家老師詢問，將原本的養殖方式轉為生態養殖，也將黃金鯧和白蝦一起混養。但因為黃金鯧對於水質的要求非常高，剛開始的死亡率極高，後來才嘗試智慧養殖的方式，利用水質檢測儀器觀察，情況才逐漸變好。
+                </p>
+
+                <p>
+                    在陳泓碩的努力下，嘉義縣政府推出智慧漁業的推動，隔一年漁業署開始啟動智慧漁業的補助並持續至今，而他本人也一直與多家機構持續研究，推出更完善的設施。陳泓碩表示，透過水質檢測的方式可以讓他的魚存活率提升。傳統養殖是只要把魚放進魚塭裡，就只能等到收成那天才能知道結果，平常也沒辦法離開；但雲端監測的方式只要透過手機，隨時隨地都能夠觀察，也能將重心放在陪伴家人。雖然這些儀器費用高昂，但相比之下，他認為陪伴家人的時光是無價的。如果沒有這些機器幫忙監測，有可能付出的費用會比購買機器的費用還要多。
+                </p>
+
+                <p>
+                    他認為現在的問題是技術無法突破，設備使用上就會有些問題，且相關費用高。再加上這些機器是放在水裡的，無法直接看到，機器也都需要訊號才能偵測；如果魚塭的位置在偏僻處、沒有訊號，機器就無法使用。這些都是不可控的因素，還需要時間來研究。
+                </p>
+
+                <figure class="article-image">
+                    <img src="白蝦交易量.jpg">
+                </figure>
+                <div class="image-caption">
+                    ▲全部消費市場白蝦的行情走勢圖（資料來源：漁產品批發市場交易行情站）
+                </div>
+
+                <h2 class="article-heading">
+                    從養蝦到育才 幫助在地產業發展
+                </h2>
+
+                <p class="article-ending">
+                    目前他也為有意願從事養殖漁業的青年給予幫助，希望能夠幫助他們，就像當年對於這方面迷茫的自己。他也會和當地的區公所舉辦地方創業的計畫，透過這些方式希望青年能夠回流，並且願意嘗試養殖漁業。未來他也希望能夠讓自己的白蝦取得政府的有機生態標籤，雖然目前還很困難，但他相信只要努力，有一天一定可以成功。
+                </p>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <!-- ===== 遮罩 ===== -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== 側邊選單 ===== -->
+
+    <aside class="side-menu" id="sideMenu">
+
+        <div class="menu-header">
+            <h2>網站選單</h2>
+            <button class="close-btn" id="closeBtn" aria-label="關閉網站選單">×</button>
+        </div>
+
+        <ul class="menu-list">
+
+            <li>
+                <a href="index.html">
+                    <span>首頁</span>
+                </a>
+            </li>
+
+            <li>
+                <button class="submenu-btn" id="articleBtn">
+                    <span>專題文章</span>
+                    <span class="arrow">▼</span>
+                </button>
+
+                <ul class="submenu" id="articleSubmenu">
+
+                    <li>
+                        <a href="article1.html">漁業困境概括</a>
+                    </li>
+
+                    <li>
+                        <a href="article2.html">烏魚</a>
+                    </li>
+
+                    <li>
+                        <a href="article3.html">貝類</a>
+                    </li>
+
+                    <li>
+                        <a href="article4.html">白蝦</a>
+                    </li>
+
+                    <li>
+                        <a href="article5.html">香魚</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#新聞報導">
+                    <span>新聞報導</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ===== JavaScript ===== -->
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+        const articleBtn = document.getElementById("articleBtn");
+        const articleSubmenu = document.getElementById("articleSubmenu");
+
+        /* ===== 開啟側邊選單 ===== */
+
+        menuBtn.addEventListener("click", function () {
+            sideMenu.classList.add("active");
+            overlay.classList.add("active");
+        });
+
+        /* ===== 關閉側邊選單 ===== */
+
+        closeBtn.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 點擊遮罩關閉 ===== */
+
+        overlay.addEventListener("click", function () {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+
+        /* ===== 專題文章展開／收起 ===== */
+
+        articleBtn.addEventListener("click", function () {
+            articleSubmenu.classList.toggle("active");
+            articleBtn.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>

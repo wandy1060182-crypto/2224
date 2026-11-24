@@ -1,0 +1,871 @@
+<!DOCTYPE html> 
+<html lang="zh-Hant"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>烏魚｜浪下真相</title> 
+ 
+    <style> 
+ 
+        /* ===== 基本設定 ===== */ 
+ 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+ 
+        body { 
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; 
+            background-color: #f5f8f8; 
+            color: #333; 
+        } 
+ 
+        @font-face { 
+            font-family: "我的網站字體"; 
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype"); 
+        } 
+ 
+ 
+        /* ===== 頂部導覽列 ===== */ 
+ 
+        .navbar { 
+            height: 70px; 
+            background-color: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 0 30px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+            position: relative; 
+            z-index: 1000; 
+        } 
+ 
+ 
+        /* ===== 網站標題置中 ===== */ 
+ 
+       .img {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+ 
+ 
+        /* ===== 漢堡按鈕固定在右側 ===== */ 
+ 
+        .menu-btn { 
+            position: absolute; 
+            right: 30px; 
+            width: 45px; 
+            height: 45px; 
+            border: none; 
+            background: transparent; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 5px; 
+        } 
+ 
+ 
+        .menu-btn span { 
+            width: 25px; 
+            height: 3px; 
+            background-color: #1d5963; 
+            border-radius: 3px; 
+            transition: 0.3s; 
+        } 
+ 
+ 
+        /* ================================================== 
+           ===== 漁業困境概括文章頁面 ===== 
+           ================================================== */ 
+ 
+        .article-page { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 60px 30px 80px; 
+        } 
+ 
+ 
+        /* ===== 文章標題 ===== */ 
+ 
+        .article-header { 
+            text-align: center; 
+            margin-bottom: 50px; 
+        } 
+ 
+ 
+        .article-category { 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            color: #1d5963; 
+            font-size: 15px; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+        } 
+ 
+ 
+        .article-header h1 { 
+            font-size: 42px; 
+            line-height: 1.4; 
+            color: #003060; 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+        } 
+ 
+ 
+        .article-header p { 
+            font-size: 16px; 
+            color: #777; 
+            line-height: 1.8; 
+        } 
+ 
+ 
+        /* ==================================================
+           ===== 滿版報導列表 =====
+           ================================================== */
+
+        .report-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+        }
+
+
+        /* ===== 單篇報導 ===== */
+
+        .report-card {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+            text-decoration: none;
+            color: #333;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        /* ===== 滑鼠移上去 ===== */
+
+        .report-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+        }
+
+
+        /* ===== 報導圖片 ===== */
+
+        .report-image {
+            width: 100%;
+            height: 430px;
+            overflow: hidden;
+            background-color: #dce8e8;
+        }
+
+
+        .report-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+
+        .report-card:hover .report-image img {
+            transform: scale(1.02);
+        }
+
+
+        /* ===== 報導文字 ===== */
+
+        .report-content {
+            padding: 30px 40px 35px;
+        }
+
+
+        .report-category {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #1d5963;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+
+        .report-content h2 {
+            font-size: 30px;
+            line-height: 1.5;
+            color: #003060;
+            margin-bottom: 12px;
+        }
+
+
+        .report-content p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #666;
+        }
+
+
+        /* ==================================================
+           ===== 漢堡按鈕 ===== 
+           ================================================== */ 
+ 
+        .menu-btn { 
+            width: 45px; 
+            height: 45px; 
+            border: none; 
+            background: transparent; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 5px; 
+        } 
+ 
+ 
+        /* ================================================== 
+           ===== 側邊選單 ===== 
+           ================================================== */ 
+ 
+        .side-menu { 
+            position: fixed; 
+            top: 0; 
+            right: -320px; 
+            width: 320px; 
+            height: 100vh; 
+            background-color: #ffffff; 
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15); 
+            transition: right 0.3s ease; 
+            z-index: 2000; 
+            overflow-y: auto; 
+        } 
+ 
+ 
+        /* 開啟選單 */ 
+ 
+        .side-menu.active { 
+            right: 0; 
+        } 
+ 
+ 
+        /* ===== 選單標題 ===== */ 
+ 
+        .menu-header { 
+            height: 70px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 25px; 
+            border-bottom: 1px solid #eeeeee; 
+        } 
+ 
+ 
+        .menu-header h2 { 
+            font-size: 20px; 
+            color: #1d5963; 
+        } 
+ 
+ 
+        /* ===== 關閉按鈕 ===== */ 
+ 
+        .close-btn { 
+            font-size: 30px; 
+            color: #555; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+        } 
+ 
+ 
+        /* ================================================== 
+           ===== 選單項目 ===== 
+           ================================================== */ 
+ 
+        .menu-list { 
+            list-style: none; 
+            padding: 15px 0; 
+        } 
+ 
+ 
+        .menu-list li { 
+            width: 100%; 
+        } 
+ 
+ 
+        .menu-list a, 
+        .submenu-btn { 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 16px 25px; 
+            color: #333; 
+            text-decoration: none; 
+            font-size: 17px; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            text-align: left; 
+            font-family: inherit; 
+        } 
+ 
+ 
+        .menu-list a:hover, 
+        .submenu-btn:hover { 
+            background-color: #edf5f5; 
+            color: #1d5963; 
+        } 
+ 
+ 
+        /* ===== 專題文章下拉選單 ===== */ 
+ 
+        .submenu { 
+            list-style: none; 
+            background-color: #f7fafa; 
+            display: none; 
+        } 
+ 
+ 
+        .submenu.active { 
+            display: block; 
+        } 
+ 
+ 
+        .submenu li a { 
+            padding: 13px 25px 13px 45px; 
+            font-size: 15px; 
+            color: #555; 
+        } 
+ 
+ 
+        .submenu li a:hover { 
+            background-color: #e8f1f1; 
+            color: #1d5963; 
+        } 
+ 
+ 
+        /* ===== 下拉箭頭 ===== */ 
+ 
+        .arrow { 
+            font-size: 14px; 
+            transition: transform 0.3s; 
+        } 
+ 
+ 
+        .submenu-btn.active .arrow { 
+            transform: rotate(180deg); 
+        } 
+ 
+ 
+        /* ================================================== 
+           ===== 遮罩 ===== 
+           ================================================== */ 
+ 
+        .overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.35); 
+            display: none; 
+            z-index: 1500; 
+        } 
+ 
+ 
+        .overlay.active { 
+            display: block; 
+        } 
+ 
+ 
+        /* ================================================== 
+           ===== 手機版 ===== 
+           ================================================== */ 
+ 
+        @media (max-width: 600px) { 
+ 
+            .navbar { 
+                padding: 0 18px; 
+            } 
+ 
+ 
+            .logo { 
+                font-size: 20px; 
+            } 
+ 
+ 
+            .side-menu { 
+                width: 280px; 
+            } 
+ 
+ 
+            /* ===== 文章區域 ===== */ 
+ 
+            .article-page { 
+                padding: 40px 18px 60px; 
+            } 
+ 
+ 
+            /* ===== 文章標題 ===== */ 
+ 
+            .article-header { 
+                margin-bottom: 30px; 
+            } 
+ 
+ 
+            .article-category { 
+                font-size: 13px; 
+            } 
+ 
+ 
+            .article-header h1 { 
+                font-size: 30px; 
+            } 
+ 
+ 
+            .article-header p { 
+                font-size: 14px; 
+            }
+
+
+            /* ===== 手機版報導 ===== */
+
+            .report-list {
+                gap: 25px;
+            }
+
+
+            .report-card {
+                border-radius: 8px;
+            }
+
+
+            .report-image {
+                height: 230px;
+            }
+
+
+            .report-content {
+                padding: 20px 22px 25px;
+            }
+
+
+            .report-category {
+                font-size: 13px;
+            }
+
+
+            .report-content h2 {
+                font-size: 22px;
+                line-height: 1.5;
+            }
+
+
+            .report-content p {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+        }
+
+        /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+
+    </style> 
+</head> 
+ 
+ 
+<body> 
+
+     <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='index.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+ 
+ 
+    <!-- ================================================== 
+         ===== 頂部導覽列 ===== 
+         ================================================== --> 
+ 
+    <nav class="navbar"> 
+    
+    <a href="index.html" class="logo">
+        <div class="img"> 
+            <img src="圖片logo.png" alt="浪下真相"> 
+        </div>
+    </a> 
+ 
+        <!-- 漢堡選單按鈕 --> 
+ 
+        <button class="menu-btn" id="menuBtn"> 
+ 
+            <span></span> 
+            <span></span> 
+            <span></span> 
+ 
+        </button> 
+ 
+    </nav> 
+ 
+ 
+ 
+    <!-- ================================================== 
+         ===== 漁業困境概括 ===== 
+         ================================================== --> 
+ 
+    <main class="article-page"> 
+ 
+ 
+        <!-- ===== 頁面標題 ===== --> 
+ 
+        <header class="article-header"> 
+ 
+            <span class="article-category"> 
+                走進各地
+            </span> 
+ 
+            <h1> 
+                烏魚 
+            </h1> 
+ 
+            <p> 
+                面對氣候、產業與市場變化所帶來的挑戰，養殖漁業業者該怎麼應對？
+            </p> 
+ 
+        </header> 
+ 
+ 
+        <!-- ==================================================
+             ===== 滿版報導列表 =====
+             ================================================== -->
+
+        <div class="report-list">
+
+
+            <!-- ===== 報導 1 ===== -->
+
+            <a href="article1.1.html" class="report-card">
+
+                <div class="report-image">
+
+                    <img
+                        src="烏魚基礎介紹圖.jpg">
+
+                </div>
+
+                <div class="report-content">
+
+                    <span class="report-category">
+                        小知識
+                    </span>
+
+                    <h2>
+                        銀白色的金子 野生捕撈走向烏魚養殖
+                    </h2>
+
+                    <p>
+                        知道「烏魚」為什麼被稱作「烏金」嗎？那是因為牠幾乎全身上下都可以利用。
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ===== 報導 2 ===== -->
+
+            <a href="article1.2html.html" class="report-card">
+
+                <div class="report-image">
+
+                    <img
+                        src="烏魚冰淇淋.jpg">
+
+                </div>
+
+                <div class="report-content">
+
+                    <span class="report-category">
+                        創新與轉型
+                    </span>
+
+                    <h2>
+                        烏魚產業的挑戰 口湖青年找尋新出路
+                    </h2>
+
+                    <p>
+                        走入雲林鄉間，從田野、魚塭再到販賣魚貨的熱鬧街區，雲林縣是台灣的養殖漁業重鎮，集結了養殖與加工產業，其中口湖鄉更是擁有豐富的產業底蘊。歷經多次的產業變化，如今口湖鄉被許多媒體譽為「烏魚子故鄉」，讓烏魚產業成為當地的特色之一。
+                    </p>
+
+                </div>
+
+            </a>
+
+    </main> 
+ 
+ 
+ 
+    <!-- ================================================== 
+         ===== 遮罩 ===== 
+         ================================================== --> 
+ 
+    <div class="overlay" id="overlay"></div> 
+ 
+ 
+ 
+    <!-- ================================================== 
+         ===== 側邊選單 ===== 
+         ================================================== --> 
+ 
+    <aside class="side-menu" id="sideMenu"> 
+ 
+ 
+        <!-- ===== 選單標題 ===== --> 
+ 
+        <div class="menu-header"> 
+ 
+            <h2>網站選單</h2> 
+ 
+            <button class="close-btn" id="closeBtn"> 
+                × 
+            </button> 
+ 
+        </div> 
+ 
+ 
+ 
+        <!-- ===== 選單內容 ===== --> 
+ 
+        <ul class="menu-list"> 
+ 
+ 
+            <!-- 首頁 --> 
+ 
+            <li> 
+ 
+                <a href="index.html"> 
+ 
+                    <span>首頁</span> 
+ 
+                </a> 
+ 
+            </li> 
+
+ 
+ 
+            <!-- 專題文章 --> 
+ 
+            <li> 
+ 
+                <button class="submenu-btn" id="articleBtn"> 
+ 
+                    <span>專題文章</span> 
+ 
+                    <span class="arrow">▼</span> 
+ 
+                </button> 
+ 
+ 
+ 
+                <!-- 專題文章子選單 --> 
+ 
+                <ul class="submenu" id="articleSubmenu"> 
+ 
+ 
+                    <li> 
+ 
+                        <a href="article1.html"> 
+                            漁業困境概括 
+                        </a> 
+ 
+                    </li> 
+ 
+ 
+                    <li> 
+ 
+                        <a href="article2.html"> 
+                            烏魚 
+                        </a> 
+ 
+                    </li> 
+ 
+ 
+                    <li> 
+ 
+                        <a href="article3.html"> 
+                            貝類 
+                        </a> 
+ 
+                    </li> 
+ 
+ 
+                    <li> 
+ 
+                        <a href="article4.html"> 
+                            白蝦 
+                        </a> 
+ 
+                    </li> 
+ 
+ 
+                    <li> 
+ 
+                        <a href="article5.html"> 
+                            香魚 
+                        </a> 
+ 
+                    </li> 
+ 
+ 
+                </ul> 
+ 
+            </li> 
+ 
+ 
+ 
+            <!-- 新聞報導 --> 
+ 
+            <li> 
+ 
+                <a href="#新聞報導"> 
+ 
+                    <span>新聞報導</span> 
+ 
+                </a> 
+ 
+            </li> 
+ 
+ 
+        </ul> 
+ 
+    </aside> 
+ 
+ 
+ 
+    <!-- ================================================== 
+         ===== JavaScript ===== 
+         ================================================== --> 
+ 
+    <script> 
+ 
+ 
+        // 取得元素 
+ 
+        const menuBtn = document.getElementById("menuBtn"); 
+ 
+        const closeBtn = document.getElementById("closeBtn"); 
+ 
+        const sideMenu = document.getElementById("sideMenu"); 
+ 
+        const overlay = document.getElementById("overlay"); 
+ 
+ 
+        const articleBtn = document.getElementById("articleBtn"); 
+ 
+        const articleSubmenu = document.getElementById("articleSubmenu"); 
+ 
+ 
+ 
+        // 開啟側邊選單 
+ 
+        menuBtn.addEventListener("click", function () { 
+ 
+            sideMenu.classList.add("active"); 
+ 
+            overlay.classList.add("active"); 
+ 
+        }); 
+ 
+ 
+ 
+        // 關閉側邊選單 
+ 
+        closeBtn.addEventListener("click", function () { 
+ 
+            sideMenu.classList.remove("active"); 
+ 
+            overlay.classList.remove("active"); 
+ 
+        }); 
+ 
+ 
+ 
+        // 點擊遮罩也可以關閉 
+ 
+        overlay.addEventListener("click", function () { 
+ 
+            sideMenu.classList.remove("active"); 
+ 
+            overlay.classList.remove("active"); 
+ 
+        }); 
+ 
+ 
+ 
+        // 展開／收起「專題文章」 
+ 
+        articleBtn.addEventListener("click", function () { 
+ 
+            articleSubmenu.classList.toggle("active"); 
+ 
+            articleBtn.classList.toggle("active"); 
+ 
+        }); 
+ 
+ 
+    </script> 
+ 
+ 
+</body> 
+</html>

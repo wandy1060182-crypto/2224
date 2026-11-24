@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>宜蘭湧泉養出的產業｜浪下真相</title>
+
+    <style>
+
+        /* ==================================================
+           ===== 基本設定 =====
+           ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f5f8f8;
+            color: #333;
+       
+        }
+
+
+
+        /* ===== 網站下載字體 ===== */
+
+        @font-face {
+            font-family: "我的網站字體";
+            src: url("rounded-l-mgenplus-2c-heavy.ttf") format("truetype");
+        }
+
+
+        /* ==================================================
+           ===== 頂部導覽列 =====
+           ================================================== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 30px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        /* ===== Logo ===== */
+
+        .logo {
+            text-decoration: none;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .img {
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .img img {
+            height: 200%;
+            width: 100%;
+
+            display: block;
+        }
+
+
+        /* ==================================================
+           ===== 漢堡按鈕 =====
+           ================================================== */
+
+        .menu-btn {
+            position: absolute;
+            right: 30px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+            background: transparent;
+
+            cursor: pointer;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+
+            background-color: #1d5963;
+
+            border-radius: 3px;
+
+            transition: 0.3s;
+        }
+
+
+        /* ==================================================
+           ===== 文章主要區域 =====
+           ================================================== */
+
+        .article-page {
+            width: 100%;
+
+            padding: 70px 20px 100px;
+        }
+
+
+        .article-container {
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background-color: #ffffff;
+
+            padding: 60px 75px 80px;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+        }
+
+
+        /* ==================================================
+           ===== 文章標題 =====
+           ================================================== */
+
+        .article-title {
+            font-family: "ZenMaruGothic-Bold.ttf",
+                         sans-serif;
+
+            color: #1d5963;
+
+            font-size: 40px;
+
+            line-height: 1.4;
+
+            letter-spacing: 0;
+
+            text-align: center;
+
+            margin-bottom: 18px;
+
+            /* 標題保持同一行 */
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           ===== 作者 =====
+           ================================================== */
+
+        .article-author {
+            text-align: center;
+
+            color: #666;
+
+            font-size: 15px;
+
+            margin-bottom: 45px;
+        }
+
+
+        /* ==================================================
+           ===== 文章內容 =====
+           ================================================== */
+
+        .article-content {
+            color: #333;
+
+            font-size: 18px;
+
+            line-height: 2;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .article-content p {
+            margin-bottom: 28px;
+
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           ===== 文章小標題 =====
+           ================================================== */
+
+        .article-heading {
+            font-family: "ZenMaruGothic-Bold.ttf",
+                         sans-serif;
+
+            color: #1d5963;
+
+            font-size: 28px;
+
+            line-height: 1.5;
+
+            letter-spacing: 1px;
+
+            margin-top: 48px;
+
+            margin-bottom: 22px;
+
+            padding-left: 16px;
+
+            border-left: 5px solid #1d5963;
+        }
+
+
+        /* ==================================================
+           ===== 文章圖片 =====
+           ================================================== */
+
+        .article-image {
+            width: 100%;
+
+            margin: 40px auto 15px;
+
+            text-align: center;
+        }
+
+
+        .article-image img {
+            width: 100%;
+
+            max-width: 760px;
+
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto;
+        }
+
+
+        /* ===== 圖片說明 ===== */
+
+        .image-caption {
+            color: #777;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+
+        /* ==================================================
+           ===== 圖表圖片 =====
+           ================================================== */
+
+        .chart-image {
+            width: 100%;
+
+            margin: 45px auto 10px;
+
+            text-align: center;
+        }
+
+
+        .chart-image img {
+            width: 100%;
+
+            max-width: 760px;
+
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto;
+        }
+
+
+        .chart-caption {
+            color: #777;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ==================================================
+           ===== 最後一段 =====
+           ================================================== */
+
+        .article-ending {
+            margin-bottom: 0 !important;
+        }
+
+
+        /* ==================================================
+           ===== 側邊選單 =====
+           ================================================== */
+
+        .side-menu {
+            position: fixed;
+
+            top: 0;
+            right: -320px;
+
+            width: 320px;
+            height: 100vh;
+
+            background-color: #ffffff;
+
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+
+            transition: right 0.3s ease;
+
+            z-index: 2000;
+
+            overflow-y: auto;
+        }
+
+
+        /* ===== 開啟選單 ===== */
+
+        .side-menu.active {
+            right: 0;
+        }
+
+
+        /* ===== 選單標題 ===== */
+
+        .menu-header {
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 25px;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        .menu-header h2 {
+            font-size: 20px;
+
+            color: #1d5963;
+        }
+
+
+        /* ===== 關閉按鈕 ===== */
+
+        .close-btn {
+            font-size: 30px;
+
+            color: #555;
+
+            background: none;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           ===== 選單項目 =====
+           ================================================== */
+
+        .menu-list {
+            list-style: none;
+
+            padding: 15px 0;
+        }
+
+
+        .menu-list li {
+            width: 100%;
+        }
+
+
+        .menu-list a,
+        .submenu-btn {
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 16px 25px;
+
+            color: #333;
+
+            text-decoration: none;
+
+            font-size: 17px;
+
+            background: none;
+
+            border: none;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            font-family: inherit;
+        }
+
+
+        .menu-list a:hover,
+        .submenu-btn:hover {
+            background-color: #edf5f5;
+
+            color: #1d5963;
+        }
+
+
+        /* ==================================================
+           ===== 專題文章下拉選單 =====
+           ================================================== */
+
+        .submenu {
+            list-style: none;
+
+            background-color: #f7fafa;
+
+            display: none;
+        }
+
+
+        .submenu.active {
+            display: block;
+        }
+
+
+        .submenu li a {
+            padding: 13px 25px 13px 45px;
+
+            font-size: 15px;
+
+            color: #555;
+        }
+
+
+        .submenu li a:hover {
+            background-color: #e8f1f1;
+
+            color: #1d5963;
+        }
+
+
+        /* ===== 下拉箭頭 ===== */
+
+        .arrow {
+            font-size: 14px;
+
+            transition: transform 0.3s;
+        }
+
+
+        .submenu-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* ==================================================
+           ===== 遮罩 =====
+           ================================================== */
+
+        .overlay {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.35);
+
+            display: none;
+
+            z-index: 1500;
+        }
+
+
+        .overlay.active {
+            display: block;
+        }
+
+
+        /* ==================================================
+           ===== 手機版 =====
+           ================================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+
+            .menu-btn {
+                right: 18px;
+            }
+
+
+            .article-page {
+                padding: 35px 12px 60px;
+            }
+
+
+            .article-container {
+                padding: 35px 22px 50px;
+            }
+
+
+            .article-title {
+                font-size: 22px;
+
+                line-height: 1.5;
+
+                white-space: nowrap;
+
+                letter-spacing: -0.5px;
+            }
+
+
+            .article-author {
+                font-size: 14px;
+
+                margin-bottom: 30px;
+            }
+
+
+            .article-content {
+                font-size: 16px;
+
+                line-height: 1.95;
+            }
+
+
+            .article-heading {
+                font-size: 23px;
+
+                margin-top: 40px;
+
+                margin-bottom: 18px;
+
+                padding-left: 12px;
+            }
+
+
+            .image-caption,
+            .chart-caption {
+                font-size: 13px;
+            }
+
+
+            .side-menu {
+                width: 280px;
+            }
+
+        }
+
+
+        /* ==================================================
+           ===== 更小螢幕 =====
+           ================================================== */
+
+        @media (max-width: 480px) {
+
+            .article-container {
+                padding: 30px 18px 45px;
+            }
+
+
+            .article-title {
+                font-size: 16px;
+
+                white-space: nowrap;
+
+                letter-spacing: -0.6px;
+            }
+
+
+            .article-content {
+                font-size: 15.5px;
+            }
+
+
+            .article-heading {
+                font-size: 21px;
+            }
+
+        }
+        
+        /* ===== 左上角返回鍵 ===== */
+        .back-button {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            z-index: 3000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: #1d5963;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #347b85;
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .back-button {
+                top: 80px;
+                left: 12px;
+                padding: 8px 13px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+     <!-- ===== 左上角返回鍵 ===== -->
+    <button class="back-button" onclick="location.href='article5.html'">
+        <span aria-hidden="true">←</span>
+        返回
+    </button>
+
+
+    <!-- ==================================================
+         ===== 頂部導覽列 =====
+         ================================================== -->
+
+    <nav class="navbar">
+
+
+        <!-- ===== Logo ===== -->
+
+        <a href="index.html" class="logo">
+
+            <div class="img">
+
+                <img src="圖片logo.png" alt="浪下真相">
+
+            </div>
+
+        </a>
+
+
+        <!-- ===== 漢堡選單 ===== -->
+
+        <button class="menu-btn" id="menuBtn">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         ===== 文章內容 =====
+         ================================================== -->
+
+    <main class="article-page">
+
+        <article class="article-container">
+
+
+            <!-- ===== 文章標題 ===== -->
+
+            <h1 class="article-title">
+                宜蘭湧泉養出的產業 香魚的生存與考驗
+            </h1>
+
+
+            <!-- ===== 作者 ===== -->
+
+            <div class="article-author">
+                文／黃心妤
+            </div>
+
+
+
+            <!-- ==================================================
+                 ===== 文章正文 =====
+                 ================================================== -->
+
+            <div class="article-content">
+
+
+                <p>
+                    夜幕降臨，宜蘭縣冬山鄉的漁場卻沒有跟著沉寂。
+                </p>
+
+
+                <p>
+                    為了維持養殖香魚所需的環境，魚池旁的燈光與水車仍持續運轉著。對多數養殖業者而言，這是香魚維持生長的重要設備；但對附近居民而言，夜間的光照與水車聲，可能成為夜晚生活中的干擾。
+                </p>
+
+
+                <p>
+                    當養殖香魚需長期依賴乾淨水質、光照與設備，養殖業者又該如何與周遭居民共存？
+                </p>
+
+
+                <p>
+                    宜蘭縣香魚養殖佔全臺九成以上的產量，其中又以冬山鄉佔據最多。之所以成為養殖重鎮，答案竟藏在「水」裡。由於蘭陽平原三面環山、雨量豐沛，山區的雨水滲入地下。當地下水流到地勢較低、不易滲透的砂土受阻時，便會受壓上升湧出地表，形成天然湧泉。具備香魚生長所需的低溫、潔淨水源的環境也因此在這裡誕生。
+                </p>
+
+
+
+                <!-- ==================================================
+                     ===== 主圖照片空間
+                     ================================================== -->
+
+                <figure class="article-image">
+
+                    <img
+                        src="香魚照.jpg"
+                    >
+
+                </figure>
+
+
+                <div class="image-caption">
+                    ▲香魚（攝影/吳尚恩）
+                </div>
+
+
+
+                <!-- ==================================================
+                     ===== 第一個小標題
+                     ================================================== -->
+
+                <h2 class="article-heading">
+                    一池湧泉，養起宜蘭香魚產業
+                </h2>
+
+
+                <p>
+                    香魚的養殖技術門檻偏高，從魚苗培育到成熟，每個階段都需要養殖業者細心管理。香魚對生長環境相當敏感，除了需要乾淨、清澈的水質與充足的溶氧量，水溫也須維持在一定的範圍。此外，日照條件同樣會影響其生長。香魚在養殖環境一旦受到污染，或水溫、水質等條件出現變化，都可能導致香魚生病甚至死亡。
+                </p>
+
+
+                <p>
+                    除了對水質敏感，香魚本身也容易受到驚嚇，養殖時通常需要與其他魚種區隔，避免受到干擾，並提供足夠的活動空間，讓其能在水域中自由游動。也正因為香魚對生長環境有較高的要求，宜蘭豐沛的水資源與天然地下湧泉，便成為發展香魚養殖的重要條件。
+                </p>
+
+
+
+                <!-- ==================================================
+                     ===== 第二個小標題
+                     ================================================== -->
+
+                <h2 class="article-heading">
+                    高標準的養殖需求 與居民生活的拉鋸
+                </h2>
+
+
+                <p>
+                    香魚的生長除了仰賴乾淨水質，日照也是影響成長的重要條件。日照時數不足或水溫過低，可能提前誘發香魚性成熟，使香魚停止成長。因此，為了延長香魚的生長期，部分養殖業者會在夜間開啟投射燈，模擬自然日照，讓香魚維持在適合生長的階段。
+                </p>
+
+
+                <p>
+                    另一方面，香魚對水質相當敏感，養殖過程也需要持續維持池水的含氧量與水體流動，因此業者會使用水車維持池水循環與溶氧。燈光與水車都是維持香魚生長的重要設備。當設備在夜間持續運轉，養殖問題可能從魚池延伸至周遭居民的生活空間。
+                </p>
+
+
+                <p>
+                    對於鄰近住宅區的養殖場而言，夜間持續亮起的投射燈，以及水車運轉所產生的聲響，都可能成為居民生活中的干擾。宜蘭縣冬山鄉柯林魚場業者許智越表示：「這是沒有辦法避免的問題，除非把養殖場設置在人煙稀少的地方。」面對這樣的情況，許智越也提出解決之道，例如替水車加裝遮罩，以隔絕部分運轉時產生的噪音，或將養殖場設置在較偏遠的地區。
+                </p>
+
+
+                <p>
+                    而真正的難題在於，對業者而言，燈光與水車是維持生產的必要設備；對居民而言，夜間的安寧同樣是生活不可或缺的一部分。當產業需求與生活品質發生碰撞，如何在兩者之間取得平衡，至今仍是香魚養殖產業尚待解決的課題。
+                </p>
+
+
+
+                <!-- ==================================================
+                     ===== 第三個小標題
+                     ================================================== -->
+
+                <h2 class="article-heading">
+                    產品開發、加工，使香魚價值更為提升
+                </h2>
+
+                 <figure class="article-image">
+
+                    <img
+                        src="香魚老闆獨照.jpg"
+                    >
+
+                </figure>
+
+
+                <div class="image-caption">
+                    ▲柯林漁場經營人許智越（攝影/吳尚恩）
+                </div>
+
+
+                <p>
+                    柯林魚場所養殖的香魚，迄今並未出現大幅度的產業轉型，但業者並未因此停下探索的腳步。之前從事廚師行業的老闆許智越透過研究與產品開發，將香魚進一步製作成甘露煮。經過加工後，整尾魚連同骨頭皆可食用，讓原本以鮮魚販售為主的香魚，多了一種消費方式。
+                </p>
+
+
+                <p class="article-ending">
+                    除了產品開發，柯林魚場也掌握從育種、養殖到包裝的生產流程，形成一條龍的經營模式。養殖出的漁獲除了製作加工食品，也能供應餐廳，讓產品經營模式更加多元。對許智越而言，從既有產業基礎出發，思考如何延伸漁獲的價值，也讓一尾香魚有更多被消費與認識的可能。
+                </p>
+
+
+            </div>
+
+        </article>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         ===== 遮罩 =====
+         ================================================== -->
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+    <!-- ==================================================
+         ===== 側邊選單 =====
+         ================================================== -->
+
+    <aside class="side-menu" id="sideMenu">
+
+
+        <!-- ===== 選單標題 ===== -->
+
+        <div class="menu-header">
+
+            <h2>網站選單</h2>
+
+            <button class="close-btn" id="closeBtn">
+                ×
+            </button>
+
+        </div>
+
+
+
+        <!-- ===== 選單內容 ===== -->
+
+        <ul class="menu-list">
+
+
+            <!-- ===== 首頁 ===== -->
+
+            <li>
+
+                <a href="index.html">
+
+                    <span>首頁</span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- ==================================================
+                 ===== 專題文章 =====
+                 ================================================== -->
+
+            <li>
+
+                <button class="submenu-btn" id="articleBtn">
+
+                    <span>專題文章</span>
+
+                    <span class="arrow">▼</span>
+
+                </button>
+
+
+
+                <!-- ===== 專題文章子選單 ===== -->
+
+                <ul class="submenu" id="articleSubmenu">
+
+
+                    <li>
+
+                        <a href="article1.html">
+                            漁業困境概括
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article2.html">
+                            烏魚
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article3.html">
+                            貝類
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article4.html">
+                            白蝦
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="article5.html">
+                            香魚
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </li>
+
+
+
+            <!-- ===== 新聞報導 ===== -->
+
+            <li>
+
+                <a href="#新聞報導">
+
+                    <span>新聞報導</span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+    </aside>
+
+
+
+    <!-- ==================================================
+         ===== JavaScript =====
+         ================================================== -->
+
+    <script>
+
+
+        /* ===== 取得元素 ===== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const closeBtn =
+            document.getElementById("closeBtn");
+
+        const sideMenu =
+            document.getElementById("sideMenu");
+
+        const overlay =
+            document.getElementById("overlay");
+
+        const articleBtn =
+            document.getElementById("articleBtn");
+
+        const articleSubmenu =
+            document.getElementById("articleSubmenu");
+
+
+
+        /* ==================================================
+           ===== 開啟側邊選單 =====
+           ================================================== */
+
+        menuBtn.addEventListener("click", function () {
+
+            sideMenu.classList.add("active");
+
+            overlay.classList.add("active");
+
+        });
+
+
+
+        /* ==================================================
+           ===== 關閉側邊選單 =====
+           ================================================== */
+
+        closeBtn.addEventListener("click", function () {
+
+            sideMenu.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        });
+
+
+
+        /* ==================================================
+           ===== 點擊遮罩關閉 =====
+           ================================================== */
+
+        overlay.addEventListener("click", function () {
+
+            sideMenu.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        });
+
+
+
+        /* ==================================================
+           ===== 專題文章展開／收起 =====
+           ================================================== */
+
+        articleBtn.addEventListener("click", function () {
+
+            articleSubmenu.classList.toggle("active");
+
+            articleBtn.classList.toggle("active");
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
