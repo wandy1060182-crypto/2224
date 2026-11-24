@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>漁事你來測｜浪下真相</title>
+
+
+    <style>
+
+        /* ==================================================
+           基本設定
+        ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                sans-serif;
+
+            background: #eef8fb;
+
+            color: #23404a;
+
+            line-height: 1.8;
+        }
+
+
+        button {
+
+            font-family: inherit;
+        }
+
+        /* ==================================================
+           ===== 頂部導覽列 =====
+        ================================================== */
+
+        .navbar {
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* ===== Logo圖片＋文字整體置中 ===== */
+
+        .logo {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 200%;
+            width: 100%;
+            display: block;
+        }
+
+
+
+        /* ==================================================
+           測驗主要區域
+        ================================================== */
+
+        .quiz-container {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: 20px auto 80px;
+        }
+
+
+        /* ==================================================
+           標題
+        ================================================== */
+
+        .quiz-header {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .quiz-header h1 {
+
+            font-size: 42px;
+
+            color: #146b82;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .quiz-header p {
+
+            color: #65818a;
+
+            font-size: 17px;
+
+            line-height: 1.9;
+        }
+
+
+        /* 標題底下的小線 */
+
+        .wave-line {
+
+            width: 70px;
+
+            height: 4px;
+
+            background: #2b9bb5;
+
+            margin: 20px auto;
+
+            border-radius: 10px;
+        }
+
+
+        /* ==================================================
+           開始測驗區
+        ================================================== */
+
+        #start-screen {
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 55px 40px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 30px
+                rgba(32, 100, 120, 0.10);
+        }
+
+
+        #start-screen h2 {
+
+            color: #146b82;
+
+            font-size: 28px;
+
+            margin-bottom: 15px;
+        }
+
+
+        #start-screen p {
+
+            color: #718990;
+
+            margin-bottom: 30px;
+
+            line-height: 1.9;
+        }
+
+
+        /* ==================================================
+           主要按鈕
+        ================================================== */
+
+        .main-btn {
+
+            border: none;
+
+            background: #197d95;
+
+            color: white;
+
+            padding: 13px 38px;
+
+            border-radius: 30px;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .main-btn:hover {
+
+            background: #125f73;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ==================================================
+           測驗畫面
+        ================================================== */
+
+        #quiz-screen {
+
+            display: none;
+        }
+
+
+        /* ==================================================
+           進度條
+        ================================================== */
+
+        .progress-area {
+
+            margin-bottom: 18px;
+        }
+
+
+        .progress-text {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #6c858d;
+
+            font-size: 15px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 8px;
+
+            background: #d9edf2;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress {
+
+            height: 100%;
+
+            width: 16.66%;
+
+            background: #2695ad;
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        /* ==================================================
+           題目卡片
+        ================================================== */
+
+        .question-card {
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(32, 100, 120, 0.10);
+        }
+
+
+        /* QUESTION 01 */
+
+        .question-number {
+
+            display: inline-block;
+
+            background: #e3f4f7;
+
+            color: #197d95;
+
+            padding: 5px 15px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* 題目 */
+
+        .question {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #254b56;
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ==================================================
+           選項
+        ================================================== */
+
+        .options {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .option {
+
+            border: 2px solid #d9eaee;
+
+            background: #fafdfe;
+
+            padding: 17px 20px;
+
+            border-radius: 15px;
+
+            text-align: left;
+
+            font-size: 17px;
+
+            color: #385861;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            line-height: 1.7;
+        }
+
+
+        .option:hover {
+
+            border-color: #2695ad;
+
+            background: #edf9fb;
+
+            transform: translateY(-2px);
+        }
+
+        /* 使用者目前選取的答案：保留選取狀態，但不提前公布正誤 */
+        .option.selected {
+
+            border-color: #2695ad;
+
+            background: #eaf8fa;
+
+            color: #185f70;
+
+            box-shadow: 0 0 0 2px rgba(38, 149, 173, 0.10);
+        }
+
+
+        /* 答對 */
+
+        .option.correct {
+
+            border-color: #4ca77c;
+
+            background: #edf9f2;
+
+            color: #28704e;
+        }
+
+
+        /* 答錯 */
+
+        .option.wrong {
+
+            border-color: #d97878;
+
+            background: #fff1f1;
+
+            color: #a94b4b;
+        }
+
+
+        .option:disabled {
+
+            cursor: default;
+        }
+
+
+        /* ==================================================
+           答題回饋
+        ================================================== */
+
+        .feedback {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 15px 20px;
+
+            border-radius: 13px;
+
+            font-size: 16px;
+        }
+
+
+        .feedback.correct-feedback {
+
+            background: #edf9f2;
+
+            color: #28704e;
+        }
+
+
+        .feedback.wrong-feedback {
+
+            background: #fff1f1;
+
+            color: #a94b4b;
+        }
+
+
+        /* ==================================================
+           下一題
+        ================================================== */
+
+        .next-area {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .back-btn {
+
+            border: 1px solid #c8e3e8;
+
+            background: #ffffff;
+
+            color: #39717d;
+
+            padding: 13px 20px;
+
+            border-radius: 30px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+
+            background: #edf9fb;
+
+            border-color: #2695ad;
+        }
+
+        #next-btn {
+
+            display: inline-block;
+
+            margin-left: auto;
+        }
+
+        #next-btn:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        /* 作答時收起上方介紹，讓題目與選項集中在同一個畫面 */
+        body.quiz-active .quiz-header {
+            display: none;
+        }
+
+        body.quiz-active .quiz-container {
+            margin-top: 16px;
+            margin-bottom: 28px;
+        }
+
+        body.quiz-active .progress-area {
+            margin-bottom: 12px;
+        }
+
+        body.quiz-active .question-card {
+            padding: 28px 32px;
+            scroll-margin-top: 16px;
+        }
+
+        body.quiz-active .question-number {
+            margin-bottom: 12px;
+        }
+
+        body.quiz-active .question {
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        body.quiz-active .options {
+            gap: 10px;
+        }
+
+        body.quiz-active .option {
+            padding: 12px 15px;
+            line-height: 1.5;
+        }
+
+        body.quiz-active .next-area {
+            margin-top: 18px;
+        }
+
+        @media (max-width: 700px) {
+            body.quiz-active .question-card {
+                padding: 22px 18px;
+            }
+
+            body.quiz-active .question {
+                font-size: 19px;
+                margin-bottom: 14px;
+            }
+
+            /* 手機也採兩欄排列，避免四個選項一路往下延伸 */
+            body.quiz-active .options {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            body.quiz-active .option {
+                padding: 11px 10px;
+                font-size: 14px;
+                line-height: 1.45;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .next-area {
+                align-items: stretch;
+            }
+
+            .back-btn,
+            #next-btn {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+        }
+
+
+        /* ==================================================
+           結果畫面
+        ================================================== */
+
+        #result-screen {
+
+            display: none;
+        }
+
+
+        .result-card {
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 50px 40px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 30px
+                rgba(32, 100, 120, 0.10);
+
+            margin-bottom: 45px;
+        }
+
+
+        .result-card h2 {
+
+            color: #146b82;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .score {
+
+            font-size: 58px;
+
+            font-weight: bold;
+
+            color: #197d95;
+
+            margin: 10px 0;
+        }
+
+
+        .result-message {
+
+            color: #718990;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ==================================================
+           答案與延伸閱讀標題
+        ================================================== */
+
+        .answers-title {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+            scroll-margin-top: 24px;
+        }
+
+
+        .answers-title h2 {
+
+            color: #146b82;
+
+            font-size: 30px;
+        }
+
+
+        .answers-title p {
+
+            color: #718990;
+        }
+
+
+        /* ==================================================
+           每一題答案卡片
+        ================================================== */
+
+        .answer-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(32, 100, 120, 0.08);
+        }
+
+
+        .answer-card h3 {
+
+            color: #146b82;
+
+            font-size: 21px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* 正確答案 */
+
+        .correct-answer {
+
+            display: inline-block;
+
+            background: #e8f6ee;
+
+            color: #28704e;
+
+            padding: 5px 13px;
+
+            border-radius: 20px;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ==================================================
+           兩篇文章的容器
+        ================================================== */
+
+        .articles-container {
+
+            display: flex;
+
+            gap: 18px;
+
+            margin-top: 8px;
+
+            overflow-x: auto;
+
+            scroll-behavior: smooth;
+
+            scroll-snap-type: x mandatory;
+
+            padding: 4px 2px 12px;
+
+            scrollbar-width: thin;
+
+            scrollbar-color: #8bcbd8 #e4f3f6;
+        }
+
+        /* 報導卡片：每次顯示兩篇，可左右滑動 */
+
+        .articles-container .article-box {
+
+            flex: 0 0 calc(50% - 9px);
+
+            min-width: 0;
+
+            scroll-snap-align: start;
+        }
+
+        /* 只有一篇報導時，卡片直接填滿整個版面 */
+
+        .articles-container .article-box:only-child {
+
+            flex-basis: 100%;
+        }
+
+        /* 報導輪播：箭頭直接放在報導區右側，讓人一眼看出可以往右看 */
+
+        .article-carousel {
+
+            position: relative;
+
+            margin-top: 8px;
+
+        }
+
+        .article-carousel::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 4px;
+
+            right: 0;
+
+            bottom: 12px;
+
+            width: 58px;
+
+            background: linear-gradient(90deg, rgba(243, 250, 251, 0), rgba(243, 250, 251, 0.96));
+
+            pointer-events: none;
+
+            border-radius: 0 14px 14px 0;
+
+        }
+
+        .carousel-btn {
+
+            position: absolute;
+
+            z-index: 2;
+
+            top: 50%;
+
+            right: 8px;
+
+            transform: translateY(-50%);
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid #b9dfe6;
+
+            background: #ffffff;
+
+            color: #197d95;
+
+            border-radius: 50%;
+
+            font-size: 27px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            box-shadow: 0 3px 12px rgba(32, 100, 120, 0.16);
+
+            transition: 0.2s;
+
+        }
+
+        .carousel-btn:hover {
+
+            background: #eaf8fa;
+
+            border-color: #2695ad;
+
+            transform: translateY(-50%) scale(1.06);
+
+        }
+
+        .carousel-btn:focus-visible {
+
+            outline: 3px solid #73c7d6;
+
+            outline-offset: 3px;
+
+        }
+
+        .carousel-btn:disabled {
+
+            display: none;
+
+        }
+
+        .article-hint {
+
+            color: #718990;
+
+            font-size: 14px;
+
+            margin: 10px 0 0;
+
+        }
+
+
+        /* ==================================================
+           單篇文章卡片
+        ================================================== */
+
+        .article-box {
+
+            background: #f3fafb;
+
+            border: 1px solid #dceef1;
+
+            border-left: 5px solid #2695ad;
+
+            border-radius: 14px;
+
+            padding: 20px 22px;
+
+            transition: 0.25s;
+        }
+
+
+        .article-box:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 6px 18px
+                rgba(32, 100, 120, 0.10);
+        }
+
+
+        /* 相關文章 */
+
+        .article-label {
+
+            font-size: 14px;
+
+            color: #2695ad;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* 文章標題 */
+
+        .article-box h4 {
+
+            font-size: 19px;
+
+            color: #285762;
+
+            margin-bottom: 8px;
+
+            line-height: 1.5;
+        }
+
+
+        /* 文章簡介 */
+
+        .article-box p {
+
+            color: #718990;
+
+            font-size: 15px;
+
+            margin-bottom: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* 閱讀文章 */
+
+        .article-link {
+
+            color: #197d95;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+
+        .article-link:hover {
+
+            color: #125f73;
+
+            text-decoration: underline;
+        }
+
+
+        /* ==================================================
+           回到頂部
+        ================================================== */
+
+        .back-top {
+
+            text-align: center;
+
+            margin-top: 40px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ==================================================
+           手機版
+        ================================================== */
+
+        @media (max-width: 700px) {
+
+
+            .quiz-container {
+
+                width: 92%;
+
+                margin-top: 20px;
+            }
+
+
+            .quiz-header h1 {
+
+                font-size: 32px;
+            }
+
+
+            .quiz-header p {
+
+                font-size: 15px;
+            }
+
+
+            .question-card {
+
+                padding: 28px 22px;
+            }
+
+
+            .question {
+
+                font-size: 21px;
+            }
+
+
+            /* 手機選項變成一欄 */
+
+            .options {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            /* 手機版一次顯示一篇報導，仍可左右滑動 */
+
+            .articles-container .article-box {
+
+                flex-basis: 100%;
+            }
+
+            .articles-container .article-box:only-child {
+
+                flex-basis: 100%;
+            }
+
+            .article-carousel::after {
+
+                width: 48px;
+
+            }
+
+            .carousel-btn {
+
+                right: 6px;
+
+                width: 38px;
+
+                height: 38px;
+
+                font-size: 25px;
+
+            }
+
+
+            .result-card {
+
+                padding: 40px 25px;
+            }
+
+
+            .answer-card {
+
+                padding: 24px 20px;
+            }
+
+
+            .score {
+
+                font-size: 48px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ===== 頂部導覽列 ===== -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="圖片logo.png" alt="浪下真相">
+        </a>
+
+    </nav>
+
+
+    <!-- ==================================================
+         整個測驗
+    ================================================== -->
+
+    <div class="quiz-container">
+
+
+        <!-- ==================================================
+             標題
+        ================================================== -->
+
+        <div class="quiz-header">
+
+            <h1>漁事知多少</h1>
+
+            <div class="wave-line"></div>
+
+            <p>
+                你對台灣的漁業與養殖產業了解多少？
+                <br>
+                來測測看你的漁業知識吧！
+            </p>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             開始畫面
+        ================================================== -->
+
+        <div id="start-screen">
+
+            <h2>準備好開始了嗎？</h2>
+
+            <p>
+                一共有 5 道題目。
+                <br>
+                完成測驗後可以查看答案，
+                並進一步閱讀相關專題文章。
+            </p>
+
+            <button
+                class="main-btn"
+                onclick="startQuiz()">
+
+                開始測驗
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             測驗畫面
+        ================================================== -->
+
+        <div id="quiz-screen">
+
+
+            <!-- 進度 -->
+            <br>
+            <br>
+            <br>
+
+            <div class="progress-area">
+
+                <div class="progress-text">
+
+                    <span id="question-count">
+                        第 1 題 / 共 5 題
+                    </span>
+
+                    <span id="progress-percent">
+                        17%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress"
+                        id="progress">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 題目 -->
+
+            <div class="question-card">
+
+
+                <span
+                    class="question-number"
+                    id="question-label">
+
+                    QUESTION 01
+
+                </span>
+
+
+                <div
+                    class="question"
+                    id="question">
+
+                    題目
+
+                </div>
+
+
+                <!-- 選項會由 JavaScript 自動產生 -->
+
+                <div
+                    class="options"
+                    id="options">
+                </div>
+
+
+                <!-- 答題結果 -->
+
+                <div
+                    class="feedback"
+                    id="feedback">
+                </div>
+
+
+                <!-- 下一題 -->
+
+                <div class="next-area">
+
+                    <button
+                        type="button"
+                        class="back-btn"
+                        id="prev-btn"
+                        onclick="previousQuestion()">
+
+                        ← 回到開始頁
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="main-btn"
+                        id="next-btn"
+                        onclick="nextQuestion()"
+                        disabled>
+
+                        下一題 →
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             結果畫面
+        ================================================== -->
+
+        <div id="result-screen">
+
+
+            <!-- 結果 -->
+
+            <div class="result-card">
+
+                <h2>測驗完成！</h2>
+
+
+                <div class="score">
+
+                    <span id="score">
+                        0
+                    </span>
+
+                    / 5
+
+                </div>
+
+
+                <div
+                    class="result-message"
+                    id="result-message">
+
+                    繼續探索更多漁業知識吧！
+
+                </div>
+
+
+                <button
+                    class="main-btn"
+                    onclick="restartQuiz()">
+
+                    再測一次
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 答案與延伸閱讀
+            ================================================== -->
+
+            <div class="answers-title" id="answers-title">
+
+                <h2>
+                    答案與延伸閱讀
+                </h2>
+
+
+                <div class="wave-line"></div>
+
+
+                <p>
+                    每題答案與延伸報導都整理在下方，點擊「閱讀文章」即可深入了解。
+                    若同一題有多篇報導，請按卡片右側箭頭查看更多。
+                </p>
+
+            </div>
+
+
+            <!-- 答案會由 JavaScript 自動產生 -->
+
+            <div id="answers-container">
+            </div>
+
+
+            <!-- 回到最上方 -->
+
+            <div class="back-top">
+
+                <button
+                    class="main-btn"
+                    onclick="window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })">
+
+                    ↑ 回到上方
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         JavaScript
+    ================================================== -->
+
+    <script>
+
+
+        /* ==================================================
+           題目資料
+        ================================================== */
+
+        const questions = [
+
+
+            /* ==================================================
+               第 1 題
+            ================================================== */
+
+            {
+
+                question:
+                "雲林縣口湖鄉過去以養殖鰻魚為主，後來因為地層下陷造成海水倒灌，魚塭水質發生變化，因此口湖鄉選擇轉型養殖哪一種魚？",
+
+
+                options: [
+
+                    "A. 鯉魚",
+
+                    "B. 虱目魚",
+
+                    "C. 烏魚",
+
+                    "D. 鰻魚"
+
+                ],
+
+
+                answer: 2,
+
+
+                articles: [
+
+
+                    {
+
+                        title:
+                        "銀白色的金子 野生捕撈走向烏魚養殖",
+
+
+                        description:
+                        "從烏魚的洄游習性、養殖發展到產業變化，帶你認識烏魚養殖產業的發展脈絡。",
+
+
+                        link:
+                        "article1.1.html"
+
+                    },
+
+
+                    {
+
+                        title:
+                        "烏魚產業的挑戰 口湖青年找尋新出路",
+
+
+                        description:
+                        "從海水倒灌到養殖轉型，認識雲林口湖烏魚產業面臨的挑戰，以及青年如何尋找產業的新可能。",
+
+
+                        link:
+                        "article1.2html.html"
+
+                    }
+
+                ]
+
+            },
+
+
+
+            /* ==================================================
+               第 2 題
+            ================================================== */
+
+            {
+
+                question:
+                "文蛤屬於底棲生物，平時生活在沙泥中。當養殖環境變得不適合生存時，文蛤會採取什麼方式保護自己？",
+
+
+                options: [
+
+                    "A. 游到水面上呼吸",
+
+                    "B. 緊閉自己的殼",
+
+                    "C. 躲到更深的泥裡",
+
+                    "D. 離開魚塭尋找適合的水域"
+
+                ],
+
+
+                answer: 1,
+
+
+                articles: [
+
+
+                    {
+
+                        title:
+                        "緊閉的軀殼 文蛤的適應力",
+
+
+                        description:
+                        "面對溫度、鹽度與水質變化，文蛤如何運用自身的生存能力適應養殖環境？",
+
+
+                        link:
+                        "article2.1.html"
+
+                    },
+
+
+                    {
+
+                        title:
+                        "看天吃飯難尋出路 文蛤養殖的新求生之道",
+
+
+                        description:
+                        "當氣候與養殖環境越來越難預測，養殖業者如何尋找新的方法，讓文蛤產業繼續走下去？",
+
+
+                        link:
+                        "article2.2.html"
+
+                    },
+
+                    {
+
+                        title:
+                        "第三篇文蛤報導（請替換成實際標題）",
+
+
+                        description:
+                        "請將這段文字替換成第三篇文蛤報導的簡介。",
+
+
+                        link:
+                        "article2.3.html"
+
+                    }
+
+                ]
+
+            },
+
+
+
+            /* ==================================================
+               第 3 題
+               ↓↓↓ 之後替換這裡
+            ================================================== */
+
+            {
+
+                question:
+                "大和黑蜆中富含豐富的胺基酸，其中胺基酸中的「鳥胺酸」具有什麼功效？",
+
+
+                options: [
+
+                    "A. 幫助代謝酒精",
+
+                    "B. 提神，讓身體恢復活力",
+
+                    "C. 護肝",
+
+                    "D. 以上皆是"
+
+                ],
+
+
+                answer: 3,
+
+
+                articles: [
+
+
+                    {
+
+                        title:
+                        "「水中黑鑽石」如何落腳台灣 與台灣原生蜆的差異",
+
+
+                        description:
+                        "台灣人常吃的蜆究竟與大和黑蜆有什麼區別？蜆又是以什麼形象在大眾視野中存在？",
+
+
+                        link:
+                        "article2.3.html"
+
+                    },
+
+
+                    {
+
+                        title:
+                        "第 3 題相關文章二",
+
+
+                        description:
+                        "這裡放第 3 題第二篇相關文章的簡介。",
+
+
+                        link:
+                        "article2.4.html"
+
+                    }
+
+                ]
+
+            },
+
+
+
+            /* ==================================================
+               第 4 題
+            ================================================== */
+
+            {
+
+                question:
+                "白蝦為什麼被稱為「白蝦」？",
+
+
+                options: [
+
+                    "A. 因為蛋白質豐富",
+
+                    "B. 因為腹部偏白，外殼顏色較淡",
+
+                    "C. 因為只能生活在淡水中",
+
+                    "D. 因為白蝦喜歡吃白色食物"
+
+                ],
+
+
+                answer: 1,
+
+
+                articles: [
+
+
+                    {
+
+                        title:
+                        "第 4 題相關文章一",
+
+
+                        description:
+                        "這裡放第 4 題第一篇相關文章的簡介。",
+
+
+                        link:
+                        "article4-1.html"
+
+                    },
+
+
+                    {
+
+                        title:
+                        "第 4 題相關文章二",
+
+
+                        description:
+                        "這裡放第 4 題第二篇相關文章的簡介。",
+
+
+                        link:
+                        "article4-2.html"
+
+                    }
+
+                ]
+
+            },
+
+
+
+            /* ==================================================
+               第 5 題
+            ================================================== */
+
+            {
+
+                question:
+                "養殖香魚的地區眾多，但為何宜蘭卻佔據台灣香魚產值的一半？",
+
+
+                options: [
+
+                    "A. 全年有雨",
+
+                    "B. 人口稀少，有足夠的養殖面積",
+
+                    "C. 湧泉資源豐富",
+
+                    "D. 宜蘭是香魚的故鄉"
+
+                ],
+
+
+                answer: 2,
+
+
+                articles: [
+
+
+                    {
+
+                        title:
+                        "宜蘭湧泉養出的產業 香魚的生存與考驗",
+
+
+                        description:
+                        "從天然湧泉的環境優勢、香魚的生長需求到養殖與居民的衝突，探尋宜蘭香魚產業的發展與挑戰。",
+
+
+                        link:
+                        "article4.1.html"
+
+                    }
+
+                ]
+
+            }
+
+        ];
+
+
+        /* ==================================================
+           目前題目
+        ================================================== */
+
+        let currentQuestion = 0;
+
+
+        /* 目前分數 */
+
+        let score = 0;
+
+
+        /* 每題作答紀錄：答案會在測驗最後才揭曉 */
+
+        let userAnswers = Array(questions.length).fill(null);
+
+        let quizStarted = false;
+
+
+
+        /* ==================================================
+           開始測驗
+        ================================================== */
+
+        function startQuiz() {
+
+            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("quiz-screen").style.display = "block";
+            document.body.classList.add("quiz-active");
+
+            /* 第一次開始才初始化；從開始頁返回時保留已作答內容 */
+            if (!quizStarted) {
+                currentQuestion = 0;
+                score = 0;
+                userAnswers = Array(questions.length).fill(null);
+                quizStarted = true;
+            }
+
+            showQuestion();
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+        }
+
+
+        /* ==================================================
+           顯示題目：保留已選答案，允許回上一題修改
+        ================================================== */
+
+        function showQuestion() {
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("question").textContent = q.question;
+            document.getElementById("question-count").textContent =
+                `第 ${currentQuestion + 1} 題 / 共 ${questions.length} 題`;
+            document.getElementById("question-label").textContent =
+                `QUESTION ${String(currentQuestion + 1).padStart(2, "0")}`;
+
+            const percent = Math.round(((currentQuestion + 1) / questions.length) * 100);
+            document.getElementById("progress-percent").textContent = `${percent}%`;
+            document.getElementById("progress").style.width = `${percent}%`;
+
+            const optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = "";
+
+            q.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "option";
+                button.textContent = option;
+                button.setAttribute("aria-pressed", userAnswers[currentQuestion] === index ? "true" : "false");
+
+                if (userAnswers[currentQuestion] === index) {
+                    button.classList.add("selected");
+                }
+
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            /* 不顯示答對、答錯或正確答案 */
+            document.getElementById("feedback").style.display = "none";
+
+            const nextButton = document.getElementById("next-btn");
+            nextButton.disabled = userAnswers[currentQuestion] === null;
+            nextButton.textContent = currentQuestion === questions.length - 1
+                ? "揭曉答案 →"
+                : "下一題 →";
+
+            document.getElementById("prev-btn").textContent = currentQuestion === 0
+                ? "← 回到開始頁"//
+                : "← 上一題";
+
+        }
+
+
+        /* ==================================================
+           選擇答案：可重複點選修改，不立即公布正誤
+        ================================================== */
+
+        function selectAnswer(index) {
+
+            userAnswers[currentQuestion] = index;
+
+            const buttons = document.querySelectorAll(".option");
+            buttons.forEach((button, buttonIndex) => {
+                button.classList.toggle("selected", buttonIndex === index);
+                button.setAttribute("aria-pressed", buttonIndex === index ? "true" : "false");
+            });
+
+            document.getElementById("next-btn").disabled = false;
+
+        }
+
+
+        /* ==================================================
+           回上一頁：第一題可回到測驗說明，進度不會消失
+        ================================================== */
+
+        function previousQuestion() {
+
+            if (currentQuestion === 0) {
+                document.getElementById("quiz-screen").style.display = "none";
+                document.getElementById("start-screen").style.display = "block";
+                document.body.classList.remove("quiz-active");
+                const startButton = document.querySelector('#start-screen .main-btn');
+                if (startButton) startButton.textContent = "繼續測驗";
+            } else {
+                currentQuestion--;
+                showQuestion();
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+        }
+
+
+        /* ==================================================
+           下一題／最後一題揭曉答案
+        ================================================== */
+
+        function nextQuestion() {
+
+            if (userAnswers[currentQuestion] === null) return;
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+        }
+
+
+        /* ==================================================
+           顯示最終結果：此時才計分並揭曉答案
+        ================================================== */
+
+        function showResult() {
+
+            score = userAnswers.reduce((total, answer, index) => {
+                return total + (answer === questions[index].answer ? 1 : 0);
+            }, 0);
+
+            document.getElementById("quiz-screen").style.display = "none";
+            document.body.classList.remove("quiz-active");
+            document.getElementById("result-screen").style.display = "block";
+            document.getElementById("score").textContent = score;
+
+            let message = "";
+            if (score === questions.length) {
+                message = "太厲害了！你對台灣漁業相當熟悉！🐟";
+            } else if (score >= 4) {
+                message = "不錯喔！你已經掌握不少漁業知識！🌊";
+            } else if (score >= 2) {
+                message = "再多認識一點台灣漁業，你會發現更多有趣的故事！";
+            } else {
+                message = "沒關係，跟著下面的文章一起探索台灣漁業吧！";
+            }
+
+            document.getElementById("result-message").textContent = message;
+            showAnswers();
+
+            requestAnimationFrame(() => {
+                const answersTitle = document.getElementById("answers-title");
+                if (answersTitle) {
+                    answersTitle.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            });
+
+        }
+
+
+        /* ==================================================
+           顯示答案＋兩篇相關文章
+        ================================================== */
+
+        function showAnswers() {
+
+
+            const container =
+                document.getElementById("answers-container");
+
+
+            container.innerHTML = "";
+
+
+
+            questions.forEach(
+                (q, index) => {
+
+
+                    /* 建立答案卡 */
+
+                    const card =
+                        document.createElement("div");
+
+
+                    card.className =
+                        "answer-card";
+
+
+
+                    /* ==================================================
+                       產生兩篇文章
+                    ================================================== */
+
+                    let articlesHTML = "";
+
+
+
+                    q.articles.forEach(
+                        (article, articleIndex) => {
+
+
+                            articlesHTML += `
+
+                                <div class="article-box">
+
+                                    <div class="article-label">
+
+                                        📖 相關文章 ${articleIndex + 1}
+
+                                    </div>
+
+
+                                    <h4>
+
+                                        ${article.title}
+
+                                    </h4>
+
+
+                                    <p>
+
+                                        ${article.description}
+
+                                    </p>
+
+
+                                    <a
+                                        href="${article.link}"
+                                        class="article-link">
+
+                                        閱讀文章 →
+
+                                    </a>
+
+                                </div>
+
+                            `;
+
+                        }
+                    );
+
+
+
+                    /* ==================================================
+                       答案卡內容
+                    ================================================== */
+
+                    card.innerHTML = `
+
+                        <h3>
+
+                            第 ${index + 1} 題
+
+                        </h3>
+
+
+                        <div class="correct-answer">
+
+                            正確答案：
+                            ${q.options[q.answer]}
+
+                        </div>
+
+
+                        <div class="article-carousel">
+
+                            <div class="articles-container" id="articles-${index}">
+
+                                ${articlesHTML}
+
+                            </div>
+
+                            ${q.articles.length > 2 ? `
+                                <button type="button" class="carousel-btn" aria-label="向右查看更多報導" title="向右查看更多報導" data-direction="right" data-target="articles-${index}">›</button>
+                            ` : ""}
+
+                        </div>
+
+                        ${q.articles.length > 2 ? `
+                            <p class="article-hint">還有其他報導，點擊右側箭頭繼續閱讀 →</p>
+                        ` : ""}
+
+                    `;
+
+
+                    container.appendChild(
+                        card
+                    );
+
+                    /* 超過兩篇報導時，右側箭頭每次向右移動一篇卡片 */
+                    const articleTrack = card.querySelector(`#articles-${index}`);
+                    const controlButton = card.querySelector(`.carousel-btn[data-target="articles-${index}"]`);
+
+                    if (controlButton && articleTrack) {
+
+                        const updateArrow = () => {
+                            const atEnd = articleTrack.scrollLeft + articleTrack.clientWidth >= articleTrack.scrollWidth - 8;
+                            controlButton.disabled = atEnd;
+                        };
+
+                        controlButton.addEventListener("click", () => {
+                            const firstArticle = articleTrack.querySelector(".article-box");
+                            const distance = firstArticle
+                                ? firstArticle.getBoundingClientRect().width + 18
+                                : articleTrack.clientWidth;
+
+                            articleTrack.scrollBy({
+                                left: distance,
+                                behavior: "smooth"
+                            });
+
+                            window.setTimeout(updateArrow, 350);
+                        });
+
+                        articleTrack.addEventListener("scroll", updateArrow, { passive: true });
+                        window.addEventListener("resize", updateArrow);
+                        updateArrow();
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* ==================================================
+           重新測驗
+        ================================================== */
+
+        function restartQuiz() {
+
+
+            document.getElementById("result-screen").style.display =
+                "none";
+
+
+            document.getElementById("quiz-screen").style.display =
+                "block";
+            document.body.classList.add("quiz-active");
+
+
+            currentQuestion = 0;
+
+            score = 0;
+
+            userAnswers = Array(questions.length).fill(null);
+
+            quizStarted = true;
+
+            const startButton = document.querySelector('#start-screen .main-btn');
+            if (startButton) startButton.textContent = "開始測驗";
+
+            showQuestion();
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
