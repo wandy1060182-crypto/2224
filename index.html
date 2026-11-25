@@ -85,8 +85,8 @@
         .side-menu {
             position: fixed;
             top: 0;
-            right: 0;
-            width: min(320px, 85vw);
+            right: -320px;
+            width: 320px;
             height: 100vh;
             background-color: #ffffff;
             box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
@@ -96,7 +96,7 @@
         }
 
         .side-menu.active {
-            transform: translateX(0);
+            right: 0;
         }
 
         .menu-header {
@@ -2020,43 +2020,6 @@
             }
         }
 
- /* ===== 手機版固定頁面寬度，禁止左右滑動 ===== */
-@media (max-width: 800px) {
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* 防止區塊超出手機螢幕 */
-    body {
-        position: relative;
-    }
-
-    /* 防止放大的分類圖片撐開頁面 */
-    .fisheries-section {
-        max-width: 100%;
-        overflow-x: clip;
-    }
-
-    /* 防止輪播內容超出畫面 */
-    .top-feature-carousel,
-    .quiz-section,
-    .documentary-section,
-    .about-section {
-        max-width: 100%;
-        overflow-x: clip;
-    }
-
-    /* 防止影片或圖片超出螢幕 */
-    img,
-    iframe,
-    video {
-        max-width: 100%;
-    }
-}
-
     
 
     </style>
@@ -2807,7 +2770,7 @@
             .copyright-brand h2 { font-size: 27px; }
         }
 
- 
+        
 
          </style>
 
