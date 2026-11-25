@@ -1863,6 +1863,165 @@
             .member-role { padding: 5px 11px; font-size: 12px; }
         }
 
+        /* ===== 首頁主視覺圖片：手機版專用排版 ===== */
+        @media (max-width: 800px) {
+            .home-hero {
+                min-height: 1080px;
+                height: auto;
+                position: relative;
+                display: block;
+                overflow: hidden;
+                background: #d2e9ff;
+            }
+
+            /* 圖片集中在上半部，避免手機畫面把照片裁切得太嚴重 */
+            .home-hero .hero-image-wrap {
+                position: absolute;
+                inset: 0 0 auto;
+                width: 100%;
+                height: 440px;
+                overflow: hidden;
+            }
+
+            .home-hero .hero-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 35%;
+                transform: none;
+            }
+
+            .home-hero .hero-image-wrap::after {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(210, 233, 255, 0) 0%,
+                    rgba(210, 233, 255, .08) 42%,
+                    rgba(210, 233, 255, .78) 78%,
+                    #d2e9ff 100%
+                );
+            }
+
+            .home-hero .hero-copy {
+                position: relative;
+                z-index: 3;
+                width: 100%;
+                margin: 0;
+                padding: 340px 7% 350px;
+                animation: none;
+            }
+
+            .home-hero .hero-site-name {
+                margin-bottom: 14px;
+                font-size: 12px;
+            }
+
+            .home-hero .hero-copy h1 {
+                margin-bottom: 13px;
+                font-size: clamp(26px, 7vw, 34px);
+                line-height: 1.45;
+            }
+
+            .home-hero .hero-copy p {
+                font-size: 14px;
+                line-height: 1.9;
+            }
+
+            .home-hero .hero-read-more {
+                margin-top: 17px;
+            }
+
+            .home-hero .hero-quiz {
+                top: auto;
+                right: 6%;
+                bottom: 28px;
+                left: 6%;
+                width: 88%;
+                max-width: none;
+                margin: 0;
+                padding: 16px 18px 12px;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .home-hero {
+                min-height: 1040px;
+            }
+
+            .home-hero .hero-image-wrap {
+                height: 390px;
+            }
+
+            .home-hero .hero-image {
+                object-position: center 32%;
+            }
+
+            .home-hero .hero-copy {
+                padding: 305px 7% 345px;
+            }
+
+            .home-hero .hero-copy h1 {
+                font-size: 27px;
+            }
+
+            .home-hero .hero-copy p {
+                font-size: 13px;
+            }
+
+            .home-hero .hero-quiz {
+                bottom: 22px;
+                padding: 14px 15px 11px;
+            }
+        }
+
+
+        /* ===== 手機版首頁：完整顯示橫式主視覺，不裁切 ===== */
+        @media (max-width: 800px) {
+            .home-hero .hero-image-wrap {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                overflow: visible;
+                background: #d2e9ff;
+            }
+
+            .home-hero .hero-image {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-height: none;
+                object-fit: contain;
+                object-position: center;
+                transform: none;
+            }
+
+            .home-hero .hero-image-wrap::after {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(210, 233, 255, 0) 0%,
+                    rgba(210, 233, 255, 0.04) 60%,
+                    rgba(210, 233, 255, 0.78) 88%,
+                    #d2e9ff 100%
+                );
+            }
+
+            /* 以橫式 16:9 圖片的高度預留文字空間 */
+            .home-hero .hero-copy {
+                padding-top: calc(56.25vw + 24px);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .home-hero .hero-copy {
+                padding-top: calc(56.25vw + 20px);
+            }
+        }
+
+    
+
     </style>
 </head>
 
