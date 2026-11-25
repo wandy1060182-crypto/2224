@@ -2020,6 +2020,52 @@
             }
         }
 
+        /* ===== 手機版：調整走進各地框圖大小與間距 ===== */
+@media (max-width: 600px) {
+
+    .fisheries-cards {
+        column-gap: 20px;
+        row-gap: 42px;
+    }
+
+    .county-image-wrap {
+        width: min(100%, 145px);
+        overflow: hidden;
+        margin-bottom: 14px;
+    }
+
+    .county-image-wrap .county-frame {
+        transform: scale(1.65);
+    }
+
+    /* 烏魚框圖 */
+    .frame-roe {
+        --frame-scale: 1.65;
+        --frame-x: 0px;
+        --frame-y: 0px;
+    }
+
+    /* 蛤蠣框圖 */
+    .frame-clam {
+        --frame-scale: 1.65;
+        --frame-x: 0px;
+        --frame-y: 0px;
+    }
+
+    /* 蝦子框圖 */
+    .frame-shrimp {
+        --frame-scale: 1.65;
+        --frame-x: 0px;
+        --frame-y: 0px;
+    }
+
+    /* 魚框圖 */
+    .frame-fish {
+        --frame-scale: 1.65;
+        --frame-x: 0px;
+        --frame-y: 0px;
+    }
+}
     
 
     </style>
@@ -2770,7 +2816,7 @@
             .copyright-brand h2 { font-size: 27px; }
         }
 
-        
+
 
          </style>
 
